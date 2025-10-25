@@ -18,6 +18,7 @@ public:
     void insert(std::string topic);
     void query(size_t start, size_t end);
     void print();
+    void print_root();
 private:
     node* root;
     size_t k_topics, size, time;

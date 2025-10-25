@@ -1,28 +1,23 @@
 #include <iostream>
-#include "segment_tree.h"
-
+#include "manager.h"
 
 int main()
 {
-	segment_tree arbolin(3);
-	arbolin.insert("Guayaba");
-	arbolin.insert("Guayaba");
-	arbolin.insert("Pepe");
-	arbolin.insert("Miguelin");
-	arbolin.insert("Mouse");
-	arbolin.insert("C++");
-	arbolin.insert("Algoritmos");
-	arbolin.insert("Mafia 3 Definitive Edition");
-	arbolin.insert("nose");
-	arbolin.insert("test");
-	arbolin.insert("IS2asdsad");
-	arbolin.insert("Miguelin");
-	arbolin.insert("Miguelin");
-	arbolin.insert("Miguelin");
-	arbolin.insert("Guayaba");
-	arbolin.insert("Messi");
+
+	std::string stop_words_path = "stopwords.txt";
+	std::string files_path = "C:\\Users\\diego\\OneDrive\\Escritorio\\EDA\\archivos_txt\\AP_BBC_CNN_Reuters_nosource_nodate_novo_nofull\\";
+
+	manager managersin(5, stop_words_path);
+	managersin.load_files(files_path);
+
+
+	int input{ -1 };
+	std::cout << "DATOS CARGADOS\n";
+	while (!managersin.is_empty())
+		managersin.insert();
 	
+	managersin.print_tree();
+	std::cout << "\n\n\n";
+	managersin.print_tree_root();
 
-
-	arbolin.print();
 }

@@ -1,7 +1,7 @@
 #include "data_reader.h"
 
 // Constructor
-data_reader::data_reader(std::string in_f_path, std::string s_w_path)
+data_reader::data_reader(std::string s_w_path)
 {
 	load_stop_words(s_w_path);
 }
@@ -25,7 +25,12 @@ void data_reader::load_stop_words(std::string file_path)
 void data_reader::load_files(std::string folder_path)
 {
 	for (auto& entry : std::filesystem::directory_iterator(folder_path))
-		files.push(folder_path);
+	{
+		//std::cout << entry.path().string() << "\n";
+		files.push(entry.path().string());
+	}
+
+	//std::cout << "s: " << files.size() << "\n";
 }
 
 std::string data_reader::get_current_trending_topic()
@@ -37,6 +42,9 @@ std::string data_reader::get_current_trending_topic()
 	{
 		std::string file_path = files.front();
 		files.pop();
+
+		//std::cout << "FILE PATH: " << file_path << "\n";
+
 
 		std::ifstream file(file_path);
 
@@ -81,13 +89,13 @@ std::string data_reader::get_current_trending_topic()
 void data_reader::to_lower_str(std::string& in_string)
 {
 	for (char& c : in_string)
-		c = std::tolower(c);
+		c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
 }
 
 void data_reader::remove_puctuation(std::string& in_string)
 {
 	for (char& c : in_string)
-		if (std::ispunct(c))
+		if (std::ispunct(static_cast<unsigned char>(c)))
 			c = ' ';
 }
 

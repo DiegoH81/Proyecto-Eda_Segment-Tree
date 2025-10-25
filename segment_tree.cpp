@@ -106,3 +106,24 @@ void segment_tree::print_recursive(node* in_ptr, int space)
 	std::cout << " ] H: " << in_ptr->height << "\n";
 	print_recursive(in_ptr->right, space + 5);;
 }
+
+void segment_tree::print_root()
+{
+	if (!root)
+		return;
+
+	std::cout << "NODO: [" << root->start << " - " << root->end << "] [ ";
+	for (int i = 0; i < root->top_topics.size(); i++)
+	{
+		size_t id = root->top_topics[i].first;
+
+		size_t count = root->top_topics[i].second;
+		std::string& word = id_to_word[id];
+
+		std::cout << word << "(" << count << ")";
+		if (i != root->top_topics.size() - 1)
+			std::cout << ", ";
+	}
+
+	std::cout << " ] H: " << root->height << "\n";
+}
