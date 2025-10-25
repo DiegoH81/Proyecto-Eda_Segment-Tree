@@ -3,5 +3,5 @@
 !*.cpp
 !*.hpp
 !*.h
+!*.txt
 !.gitignore
-!.txt
