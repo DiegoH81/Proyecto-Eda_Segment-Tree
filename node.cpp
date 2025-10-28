@@ -4,7 +4,7 @@
 node::node() :
     start(-1), end(-1), left(nullptr), right(nullptr), top_topics(), height(-1), k_topics(-1) {}
 
-node::node(int in_start, int in_end, topic_vector in_t_topics, size_t in_height, size_t in_k_topics, node* in_left, node* in_right)
+node::node(size_t in_start, size_t in_end, topic_vector in_t_topics, size_t in_height, size_t in_k_topics, node* in_left, node* in_right)
     :start(in_start), end(in_end), top_topics (in_t_topics), height(in_height), k_topics(in_k_topics), left(in_left), right(in_right) {}
 
 // Funciones

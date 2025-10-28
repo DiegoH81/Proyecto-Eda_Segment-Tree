@@ -1,5 +1,7 @@
 #include <iostream>
+#include <chrono>
 #include "manager.h"
+
 
 int main()
 {
@@ -13,11 +15,25 @@ int main()
 
 	int input{ -1 };
 	std::cout << "DATOS CARGADOS\n";
+
+	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+
 	while (!managersin.is_empty())
 		managersin.insert();
+
+	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 	
-	managersin.print_tree();
+	//managersin.print_tree();
 	std::cout << "\n\n\n";
 	managersin.print_tree_root();
+	
+	size_t last_k = 1000;
+	auto query = managersin.query(managersin.get_time() - last_k, managersin.get_time());
 
+	std::cout << "\n\n[ " << managersin.get_time() - last_k << " - " << managersin.get_time() << " ]\n";
+	std::cout << "Query: " << last_k << "\n";
+	for (auto& topic : query)
+		std::cout << topic.first << " - " << topic.second << "\n";
+		
+	std::cout << "\nTiempo que demoro en insertar: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms\n";
 }

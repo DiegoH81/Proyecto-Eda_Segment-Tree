@@ -2,13 +2,16 @@
 
 // Constructores
 segment_tree::segment_tree(size_t in_k_topics)
-	: root(nullptr), k_topics(in_k_topics), size(0), time(1), word_to_id(), id_to_word()
+	: root(nullptr), k_topics(in_k_topics * 2), size(0), time(0), word_to_id(), id_to_word()
 {}
 
 
 // Funciones
 void segment_tree::insert(std::string topic)
 {
+	time++;
+	size++;
+
 	process_topic(topic);
 	
 	size_t id = word_to_id[topic];
@@ -17,10 +20,7 @@ void segment_tree::insert(std::string topic)
 	node** pos = find_pos(path);
 
 	*pos = new node(time, time, { {id, 1} }, 0, k_topics);
-	adjust_tree(path);	
-
-	time++;
-	size++;
+	adjust_tree(path);
 }
 
 node** segment_tree::find_pos(std::vector<node*>& path)
@@ -38,9 +38,12 @@ node** segment_tree::find_pos(std::vector<node*>& path)
 		(*ptr)->end = time; // Adjust limits
 		path.push_back(*ptr);
 
-		size_t mid = ((*ptr)->start + (*ptr)->end) / 2;
+		size_t& start = (*ptr)->start;
+		size_t end = start + std::pow(2, (*ptr)->height) - 1;
 
-		if (time < mid)
+		size_t mid = (start + end) / 2;
+
+		if (time <= mid)
 			ptr = &((*ptr)->left);
 		else
 			ptr = &((*ptr)->right);
@@ -79,6 +82,70 @@ void segment_tree::grow_node(node** in_ptr)
 void segment_tree::print()
 {
 	print_recursive(root, 0);
+}
+
+std::vector<std::pair<std::string, size_t>> segment_tree::query(size_t start, size_t end)
+{
+	std::map <size_t, size_t> answer;
+	recursive_query(root, start, end, answer);
+
+	std::vector<std::pair<size_t, size_t>> new_order;
+
+	for (auto& item : answer)
+		new_order.push_back({ item.first, item.second });
+
+	std::sort(new_order.begin(), new_order.end(), topic_cmp);
+
+	if (new_order.size() > k_topics)
+		new_order.resize(k_topics);
+
+	// Join answers
+	std::vector<std::pair<std::string, size_t>> answer_vec;
+	answer_vec.reserve(k_topics);
+
+	for (auto& topic : new_order)
+		answer_vec.push_back({ id_to_word[topic.first], topic.second });
+
+	return answer_vec;
+}
+
+void segment_tree::recursive_query(node* in_ptr, size_t range_start, size_t range_end, std::map <size_t, size_t>& answer)
+{
+	if (!in_ptr)
+		return;
+
+
+	size_t& ptr_start = in_ptr->start;
+	size_t& ptr_end = in_ptr->end;
+
+	if (range_end < ptr_start || range_start > ptr_end) // Out of range
+		return;
+
+	if (ptr_start == range_start && ptr_end == range_end)
+	{
+		for (auto& topic : in_ptr->top_topics)
+			answer[topic.first] += topic.second;
+
+		return;
+	}
+
+	size_t end = ptr_start + std::pow(2, in_ptr->height) - 1;
+
+	size_t mid = (ptr_start + end) / 2;
+
+
+	size_t& l_end = in_ptr->left->end;
+	size_t& r_start = in_ptr->right->start;
+
+	if ( range_start <= mid && mid <= range_end ) // Query is in left and right
+	{
+		recursive_query(in_ptr->left, range_start, l_end, answer);
+		recursive_query(in_ptr->right, r_start, range_end, answer);
+	}
+	else if (range_end <= mid) // Query is in left
+		recursive_query(in_ptr->left, range_start, range_end, answer);
+	else					   // Query is in right
+		recursive_query(in_ptr->right, range_start, range_end, answer);
 }
 
 void segment_tree::print_recursive(node* in_ptr, int space)
@@ -127,3 +194,5 @@ void segment_tree::print_root()
 
 	std::cout << " ] H: " << root->height << "\n";
 }
+
+size_t segment_tree::get_time() { return time; }

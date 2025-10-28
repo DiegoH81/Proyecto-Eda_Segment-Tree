@@ -16,6 +16,8 @@ public:
 	void print_tree();
 	void print_tree_root();
 
+	std::vector<std::pair<std::string, size_t>> query(size_t start, size_t end);
+	size_t get_time();
 	bool is_empty();
 
 private:

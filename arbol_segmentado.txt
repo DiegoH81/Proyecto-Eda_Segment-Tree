@@ -1,0 +1,585 @@
+                                             NODO: [1 - 1] [ vaccine(1) ] H: 0
+                                        NODO: [1 - 2] [ vaccine(1), nets(1) ] H: 1
+                                             NODO: [2 - 2] [ nets(1) ] H: 0
+                                   NODO: [1 - 4] [ vaccine(1), nets(1), bush(1), ozawa(1) ] H: 2
+                                             NODO: [3 - 3] [ bush(1) ] H: 0
+                                        NODO: [3 - 4] [ bush(1), ozawa(1) ] H: 1
+                                             NODO: [4 - 4] [ ozawa(1) ] H: 0
+                              NODO: [1 - 8] [ vaccine(1), nets(1), bush(1), ozawa(1), oslo(1) ] H: 3
+                                             NODO: [5 - 5] [ oslo(1) ] H: 0
+                                        NODO: [5 - 6] [ oslo(1), text(1) ] H: 1
+                                             NODO: [6 - 6] [ text(1) ] H: 0
+                                   NODO: [5 - 8] [ oslo(1), text(1), industry(1), time(1) ] H: 2
+                                             NODO: [7 - 7] [ industry(1) ] H: 0
+                                        NODO: [7 - 8] [ industry(1), time(1) ] H: 1
+                                             NODO: [8 - 8] [ time(1) ] H: 0
+                         NODO: [1 - 16] [ percent(1), vaccine(1), indonesia(1), nets(1), senate(1) ] H: 4
+                                             NODO: [9 - 9] [ percent(1) ] H: 0
+                                        NODO: [9 - 10] [ percent(1), indonesia(1) ] H: 1
+                                             NODO: [10 - 10] [ indonesia(1) ] H: 0
+                                   NODO: [9 - 12] [ percent(1), indonesia(1), senate(1), japan(1) ] H: 2
+                                             NODO: [11 - 11] [ senate(1) ] H: 0
+                                        NODO: [11 - 12] [ senate(1), japan(1) ] H: 1
+                                             NODO: [12 - 12] [ japan(1) ] H: 0
+                              NODO: [9 - 16] [ percent(1), indonesia(1), senate(1), japan(1), patent(1) ] H: 3
+                                             NODO: [13 - 13] [ patent(1) ] H: 0
+                                        NODO: [13 - 14] [ patent(1), vioxx(1) ] H: 1
+                                             NODO: [14 - 14] [ vioxx(1) ] H: 0
+                                   NODO: [13 - 16] [ patent(1), vioxx(1), struck(1), meat(1) ] H: 2
+                                             NODO: [15 - 15] [ struck(1) ] H: 0
+                                        NODO: [15 - 16] [ struck(1), meat(1) ] H: 1
+                                             NODO: [16 - 16] [ meat(1) ] H: 0
+                    NODO: [1 - 32] [ california(1), attorney(1), vaccine(1), percent(1), jobs(1) ] H: 5
+                                             NODO: [17 - 17] [ california(1) ] H: 0
+                                        NODO: [17 - 18] [ california(1), city(1) ] H: 1
+                                             NODO: [18 - 18] [ city(1) ] H: 0
+                                   NODO: [17 - 20] [ california(1), city(1), historians(1), dying(1) ] H: 2
+                                             NODO: [19 - 19] [ historians(1) ] H: 0
+                                        NODO: [19 - 20] [ historians(1), dying(1) ] H: 1
+                                             NODO: [20 - 20] [ dying(1) ] H: 0
+                              NODO: [17 - 24] [ california(1), city(1), historians(1), dying(1), ponte(1) ] H: 3
+                                             NODO: [21 - 21] [ ponte(1) ] H: 0
+                                        NODO: [21 - 22] [ ponte(1), burger(1) ] H: 1
+                                             NODO: [22 - 22] [ burger(1) ] H: 0
+                                   NODO: [21 - 24] [ ponte(1), burger(1), netflix(1), tigers(1) ] H: 2
+                                             NODO: [23 - 23] [ netflix(1) ] H: 0
+                                        NODO: [23 - 24] [ netflix(1), tigers(1) ] H: 1
+                                             NODO: [24 - 24] [ tigers(1) ] H: 0
+                         NODO: [17 - 32] [ attorney(1), california(1), jobs(1), city(1), aside(1) ] H: 4
+                                             NODO: [25 - 25] [ attorney(1) ] H: 0
+                                        NODO: [25 - 26] [ attorney(1), jobs(1) ] H: 1
+                                             NODO: [26 - 26] [ jobs(1) ] H: 0
+                                   NODO: [25 - 28] [ attorney(1), jobs(1), aside(1), bird(1) ] H: 2
+                                             NODO: [27 - 27] [ aside(1) ] H: 0
+                                        NODO: [27 - 28] [ aside(1), bird(1) ] H: 1
+                                             NODO: [28 - 28] [ bird(1) ] H: 0
+                              NODO: [25 - 32] [ attorney(1), jobs(1), aside(1), bird(1), bulls(1) ] H: 3
+                                             NODO: [29 - 29] [ bulls(1) ] H: 0
+                                        NODO: [29 - 30] [ bulls(1), u(1) ] H: 1
+                                             NODO: [30 - 30] [ u(1) ] H: 0
+                                   NODO: [29 - 32] [ bulls(1), u(1), least(1), obasanjo(1) ] H: 2
+                                             NODO: [31 - 31] [ least(1) ] H: 0
+                                        NODO: [31 - 32] [ least(1), obasanjo(1) ] H: 1
+                                             NODO: [32 - 32] [ obasanjo(1) ] H: 0
+               NODO: [1 - 64] [ vaccine(2), palestinian(2), barry(1), h5n1(1), percent(1) ] H: 6
+                                             NODO: [33 - 33] [ h5n1(1) ] H: 0
+                                        NODO: [33 - 34] [ vaccine(1), h5n1(1) ] H: 1
+                                             NODO: [34 - 34] [ vaccine(1) ] H: 0
+                                   NODO: [33 - 36] [ h5n1(1), vaccine(1), rights(1), vieira(1) ] H: 2
+                                             NODO: [35 - 35] [ rights(1) ] H: 0
+                                        NODO: [35 - 36] [ rights(1), vieira(1) ] H: 1
+                                             NODO: [36 - 36] [ vieira(1) ] H: 0
+                              NODO: [33 - 40] [ vaccine(1), h5n1(1), rights(1), vieira(1), devil(1) ] H: 3
+                                             NODO: [37 - 37] [ devil(1) ] H: 0
+                                        NODO: [37 - 38] [ devil(1), experts(1) ] H: 1
+                                             NODO: [38 - 38] [ experts(1) ] H: 0
+                                   NODO: [37 - 40] [ devil(1), experts(1), poll(1), study(1) ] H: 2
+                                             NODO: [39 - 39] [ poll(1) ] H: 0
+                                        NODO: [39 - 40] [ poll(1), study(1) ] H: 1
+                                             NODO: [40 - 40] [ study(1) ] H: 0
+                         NODO: [33 - 48] [ barry(1), h5n1(1), vaccine(1), palestinian(1), rights(1) ] H: 4
+                                             NODO: [41 - 41] [ flint(1) ] H: 0
+                                        NODO: [41 - 42] [ flint(1), barry(1) ] H: 1
+                                             NODO: [42 - 42] [ barry(1) ] H: 0
+                                   NODO: [41 - 44] [ flint(1), barry(1), palestinian(1), ski(1) ] H: 2
+                                             NODO: [43 - 43] [ palestinian(1) ] H: 0
+                                        NODO: [43 - 44] [ palestinian(1), ski(1) ] H: 1
+                                             NODO: [44 - 44] [ ski(1) ] H: 0
+                              NODO: [41 - 48] [ flint(1), barry(1), palestinian(1), senate(1), bush(1) ] H: 3
+                                             NODO: [45 - 45] [ bush(1) ] H: 0
+                                        NODO: [45 - 46] [ senate(1), bush(1) ] H: 1
+                                             NODO: [46 - 46] [ senate(1) ] H: 0
+                                   NODO: [45 - 48] [ bush(1), senate(1), lehman(1), sales(1) ] H: 2
+                                             NODO: [47 - 47] [ lehman(1) ] H: 0
+                                        NODO: [47 - 48] [ lehman(1), sales(1) ] H: 1
+                                             NODO: [48 - 48] [ sales(1) ] H: 0
+                    NODO: [33 - 64] [ palestinian(2), vaccine(1), h5n1(1), barry(1), hoenig(1) ] H: 5
+                                             NODO: [49 - 49] [ mini(1) ] H: 0
+                                        NODO: [49 - 50] [ mini(1), palestinian(1) ] H: 1
+                                             NODO: [50 - 50] [ palestinian(1) ] H: 0
+                                   NODO: [49 - 52] [ mini(1), palestinian(1), sources(1), sales(1) ] H: 2
+                                             NODO: [51 - 51] [ sources(1) ] H: 0
+                                        NODO: [51 - 52] [ sources(1), sales(1) ] H: 1
+                                             NODO: [52 - 52] [ sales(1) ] H: 0
+                              NODO: [49 - 56] [ mini(1), hoenig(1), palestinian(1), sources(1), sales(1) ] H: 3
+                                             NODO: [53 - 53] [ nepal(1) ] H: 0
+                                        NODO: [53 - 54] [ nepal(1), two(1) ] H: 1
+                                             NODO: [54 - 54] [ two(1) ] H: 0
+                                   NODO: [53 - 56] [ nepal(1), two(1), hoenig(1), stomach(1) ] H: 2
+                                             NODO: [55 - 55] [ hoenig(1) ] H: 0
+                                        NODO: [55 - 56] [ hoenig(1), stomach(1) ] H: 1
+                                             NODO: [56 - 56] [ stomach(1) ] H: 0
+                         NODO: [49 - 64] [ stocks(1), mini(1), palestinian(1), hoenig(1), sources(1) ] H: 4
+                                             NODO: [57 - 57] [ snow(1) ] H: 0
+                                        NODO: [57 - 58] [ snow(1), knightley(1) ] H: 1
+                                             NODO: [58 - 58] [ knightley(1) ] H: 0
+                                   NODO: [57 - 60] [ snow(1), knightley(1), stocks(1), tennessee(1) ] H: 2
+                                             NODO: [59 - 59] [ stocks(1) ] H: 0
+                                        NODO: [59 - 60] [ stocks(1), tennessee(1) ] H: 1
+                                             NODO: [60 - 60] [ tennessee(1) ] H: 0
+                              NODO: [57 - 64] [ snow(1), knightley(1), stocks(1), tennessee(1), turkey(1) ] H: 3
+                                             NODO: [61 - 61] [ turkey(1) ] H: 0
+                                        NODO: [61 - 62] [ turkey(1), news(1) ] H: 1
+                                             NODO: [62 - 62] [ news(1) ] H: 0
+                                   NODO: [61 - 64] [ turkey(1), news(1), apple(1), peru(1) ] H: 2
+                                             NODO: [63 - 63] [ apple(1) ] H: 0
+                                        NODO: [63 - 64] [ apple(1), peru(1) ] H: 1
+                                             NODO: [64 - 64] [ peru(1) ] H: 0
+          NODO: [1 - 128] [ vaccine(2), palestinian(2), percent(1), h5n1(1), barry(1) ] H: 7
+                                             NODO: [65 - 65] [ marlins(1) ] H: 0
+                                        NODO: [65 - 66] [ marlins(1), economy(1) ] H: 1
+                                             NODO: [66 - 66] [ economy(1) ] H: 0
+                                   NODO: [65 - 68] [ marlins(1), economy(1), prevented(1), defense(1) ] H: 2
+                                             NODO: [67 - 67] [ prevented(1) ] H: 0
+                                        NODO: [67 - 68] [ prevented(1), defense(1) ] H: 1
+                                             NODO: [68 - 68] [ defense(1) ] H: 0
+                              NODO: [65 - 72] [ marlins(1), economy(1), prevented(1), defense(1), notice(1) ] H: 3
+                                             NODO: [69 - 69] [ notice(1) ] H: 0
+                                        NODO: [69 - 70] [ notice(1), stones(1) ] H: 1
+                                             NODO: [70 - 70] [ stones(1) ] H: 0
+                                   NODO: [69 - 72] [ notice(1), stones(1), french(1), life(1) ] H: 2
+                                             NODO: [71 - 71] [ french(1) ] H: 0
+                                        NODO: [71 - 72] [ french(1), life(1) ] H: 1
+                                             NODO: [72 - 72] [ life(1) ] H: 0
+                         NODO: [65 - 80] [ campbell(1), marlins(1), church(1), economy(1), justice(1) ] H: 4
+                                             NODO: [73 - 73] [ campbell(1) ] H: 0
+                                        NODO: [73 - 74] [ campbell(1), church(1) ] H: 1
+                                             NODO: [74 - 74] [ church(1) ] H: 0
+                                   NODO: [73 - 76] [ campbell(1), church(1), justice(1), force(1) ] H: 2
+                                             NODO: [75 - 75] [ justice(1) ] H: 0
+                                        NODO: [75 - 76] [ justice(1), force(1) ] H: 1
+                                             NODO: [76 - 76] [ force(1) ] H: 0
+                              NODO: [73 - 80] [ campbell(1), church(1), justice(1), force(1), chief(1) ] H: 3
+                                             NODO: [77 - 77] [ chief(1) ] H: 0
+                                        NODO: [77 - 78] [ chief(1), deloitte(1) ] H: 1
+                                             NODO: [78 - 78] [ deloitte(1) ] H: 0
+                                   NODO: [77 - 80] [ chief(1), deloitte(1), species(1), hayes(1) ] H: 2
+                                             NODO: [79 - 79] [ species(1) ] H: 0
+                                        NODO: [79 - 80] [ species(1), hayes(1) ] H: 1
+                                             NODO: [80 - 80] [ hayes(1) ] H: 0
+                    NODO: [65 - 96] [ divorce(1), american(1), marlins(1), campbell(1), rates(1) ] H: 5
+                                             NODO: [81 - 81] [ divorce(1) ] H: 0
+                                        NODO: [81 - 82] [ divorce(1), def(1) ] H: 1
+                                             NODO: [82 - 82] [ def(1) ] H: 0
+                                   NODO: [81 - 84] [ divorce(1), def(1), health(1), time(1) ] H: 2
+                                             NODO: [83 - 83] [ health(1) ] H: 0
+                                        NODO: [83 - 84] [ health(1), time(1) ] H: 1
+                                             NODO: [84 - 84] [ time(1) ] H: 0
+                              NODO: [81 - 88] [ divorce(1), def(1), health(1), case(1), time(1) ] H: 3
+                                             NODO: [85 - 85] [ najaf(1) ] H: 0
+                                        NODO: [85 - 86] [ najaf(1), case(1) ] H: 1
+                                             NODO: [86 - 86] [ case(1) ] H: 0
+                                   NODO: [85 - 88] [ najaf(1), case(1), blackouts(1), skulls(1) ] H: 2
+                                             NODO: [87 - 87] [ blackouts(1) ] H: 0
+                                        NODO: [87 - 88] [ blackouts(1), skulls(1) ] H: 1
+                                             NODO: [88 - 88] [ skulls(1) ] H: 0
+                         NODO: [81 - 96] [ american(1), divorce(1), rates(1), def(1), health(1) ] H: 4
+                                             NODO: [89 - 89] [ f(1) ] H: 0
+                                        NODO: [89 - 90] [ f(1), american(1) ] H: 1
+                                             NODO: [90 - 90] [ american(1) ] H: 0
+                                   NODO: [89 - 92] [ f(1), american(1), rates(1), may(1) ] H: 2
+                                             NODO: [91 - 91] [ rates(1) ] H: 0
+                                        NODO: [91 - 92] [ rates(1), may(1) ] H: 1
+                                             NODO: [92 - 92] [ may(1) ] H: 0
+                              NODO: [89 - 96] [ f(1), american(1), rates(1), may(1), visit(1) ] H: 3
+                                             NODO: [93 - 93] [ visit(1) ] H: 0
+                                        NODO: [93 - 94] [ visit(1), vinci(1) ] H: 1
+                                             NODO: [94 - 94] [ vinci(1) ] H: 0
+                                   NODO: [93 - 96] [ visit(1), vinci(1), vitamins(1), ethanol(1) ] H: 2
+                                             NODO: [95 - 95] [ vitamins(1) ] H: 0
+                                        NODO: [95 - 96] [ vitamins(1), ethanol(1) ] H: 1
+                                             NODO: [96 - 96] [ ethanol(1) ] H: 0
+               NODO: [65 - 128] [ campbell(1), marlins(1), american(1), divorce(1), rates(1) ] H: 6
+                                             NODO: [97 - 97] [ smoke(1) ] H: 0
+                                        NODO: [97 - 98] [ smoke(1), missouri(1) ] H: 1
+                                             NODO: [98 - 98] [ missouri(1) ] H: 0
+                                   NODO: [97 - 100] [ smoke(1), missouri(1), man(1), women(1) ] H: 2
+                                             NODO: [99 - 99] [ man(1) ] H: 0
+                                        NODO: [99 - 100] [ man(1), women(1) ] H: 1
+                                             NODO: [100 - 100] [ women(1) ] H: 0
+                              NODO: [97 - 104] [ smoke(1), missouri(1), man(1), women(1), hole(1) ] H: 3
+                                             NODO: [101 - 101] [ hole(1) ] H: 0
+                                        NODO: [101 - 102] [ hole(1), new(1) ] H: 1
+                                             NODO: [102 - 102] [ new(1) ] H: 0
+                                   NODO: [101 - 104] [ hole(1), new(1), attrition(1), insults(1) ] H: 2
+                                             NODO: [103 - 103] [ attrition(1) ] H: 0
+                                        NODO: [103 - 104] [ attrition(1), insults(1) ] H: 1
+                                             NODO: [104 - 104] [ insults(1) ] H: 0
+                         NODO: [97 - 112] [ e(1), smoke(1), missouri(1), forced(1), sales(1) ] H: 4
+                                             NODO: [105 - 105] [ sales(1) ] H: 0
+                                        NODO: [105 - 106] [ sales(1), e(1) ] H: 1
+                                             NODO: [106 - 106] [ e(1) ] H: 0
+                                   NODO: [105 - 108] [ forced(1), sales(1), e(1), million(1) ] H: 2
+                                             NODO: [107 - 107] [ million(1) ] H: 0
+                                        NODO: [107 - 108] [ million(1), forced(1) ] H: 1
+                                             NODO: [108 - 108] [ forced(1) ] H: 0
+                              NODO: [105 - 112] [ sales(1), forced(1), e(1), million(1), liberia(1) ] H: 3
+                                             NODO: [109 - 109] [ liberia(1) ] H: 0
+                                        NODO: [109 - 110] [ liberia(1), agency(1) ] H: 1
+                                             NODO: [110 - 110] [ agency(1) ] H: 0
+                                   NODO: [109 - 112] [ liberia(1), agency(1), used(1), britain(1) ] H: 2
+                                             NODO: [111 - 111] [ used(1) ] H: 0
+                                        NODO: [111 - 112] [ used(1), britain(1) ] H: 1
+                                             NODO: [112 - 112] [ britain(1) ] H: 0
+                    NODO: [97 - 128] [ budget(1), smoke(1), e(1), missouri(1), sales(1) ] H: 5
+                                             NODO: [113 - 113] [ rangers(1) ] H: 0
+                                        NODO: [113 - 114] [ rangers(1), china(1) ] H: 1
+                                             NODO: [114 - 114] [ china(1) ] H: 0
+                                   NODO: [113 - 116] [ rangers(1), china(1), olmert(1), bae(1) ] H: 2
+                                             NODO: [115 - 115] [ olmert(1) ] H: 0
+                                        NODO: [115 - 116] [ olmert(1), bae(1) ] H: 1
+                                             NODO: [116 - 116] [ bae(1) ] H: 0
+                              NODO: [113 - 120] [ rangers(1), china(1), olmert(1), bae(1), guidant(1) ] H: 3
+                                             NODO: [117 - 117] [ guidant(1) ] H: 0
+                                        NODO: [117 - 118] [ guidant(1), nba(1) ] H: 1
+                                             NODO: [118 - 118] [ nba(1) ] H: 0
+                                   NODO: [117 - 120] [ guidant(1), nba(1), augusta(1), berlusconi(1) ] H: 2
+                                             NODO: [119 - 119] [ augusta(1) ] H: 0
+                                        NODO: [119 - 120] [ augusta(1), berlusconi(1) ] H: 1
+                                             NODO: [120 - 120] [ berlusconi(1) ] H: 0
+                         NODO: [113 - 128] [ implants(1), rangers(1), budget(1), bush(1), china(1) ] H: 4
+                                             NODO: [121 - 121] [ implants(1) ] H: 0
+                                        NODO: [121 - 122] [ implants(1), budget(1) ] H: 1
+                                             NODO: [122 - 122] [ budget(1) ] H: 0
+                                   NODO: [121 - 124] [ implants(1), budget(1), bird(1), san(1) ] H: 2
+                                             NODO: [123 - 123] [ bird(1) ] H: 0
+                                        NODO: [123 - 124] [ san(1), bird(1) ] H: 1
+                                             NODO: [124 - 124] [ san(1) ] H: 0
+                              NODO: [121 - 128] [ implants(1), bush(1), budget(1), san(1), bird(1) ] H: 3
+                                             NODO: [125 - 125] [ immigration(1) ] H: 0
+                                        NODO: [125 - 126] [ immigration(1), people(1) ] H: 1
+                                             NODO: [126 - 126] [ people(1) ] H: 0
+                                   NODO: [125 - 128] [ immigration(1), people(1), four(1), bush(1) ] H: 2
+                                             NODO: [127 - 127] [ four(1) ] H: 0
+                                        NODO: [127 - 128] [ four(1), bush(1) ] H: 1
+                                             NODO: [128 - 128] [ bush(1) ] H: 0
+     NODO: [1 - 256] [ nepal(3), vaccine(2), palestinian(2), britain(1), barry(1) ] H: 8
+                                             NODO: [129 - 129] [ cynicism(1) ] H: 0
+                                        NODO: [129 - 130] [ cynicism(1), law(1) ] H: 1
+                                             NODO: [130 - 130] [ law(1) ] H: 0
+                                   NODO: [129 - 132] [ cynicism(1), law(1), madrid(1), immigration(1) ] H: 2
+                                             NODO: [131 - 131] [ madrid(1) ] H: 0
+                                        NODO: [131 - 132] [ madrid(1), immigration(1) ] H: 1
+                                             NODO: [132 - 132] [ immigration(1) ] H: 0
+                              NODO: [129 - 136] [ cynicism(1), law(1), madrid(1), east(1), immigration(1) ] H: 3
+                                             NODO: [133 - 133] [ double(1) ] H: 0
+                                        NODO: [133 - 134] [ double(1), reuters(1) ] H: 1
+                                             NODO: [134 - 134] [ reuters(1) ] H: 0
+                                   NODO: [133 - 136] [ double(1), reuters(1), u(1), east(1) ] H: 2
+                                             NODO: [135 - 135] [ u(1) ] H: 0
+                                        NODO: [135 - 136] [ u(1), east(1) ] H: 1
+                                             NODO: [136 - 136] [ east(1) ] H: 0
+                         NODO: [129 - 144] [ unitedhealth(1), cynicism(1), law(1), madrid(1), immigration(1) ] H: 4
+                                             NODO: [137 - 137] [ stewart(1) ] H: 0
+                                        NODO: [137 - 138] [ stewart(1), vilar(1) ] H: 1
+                                             NODO: [138 - 138] [ vilar(1) ] H: 0
+                                   NODO: [137 - 140] [ stewart(1), vilar(1), unitedhealth(1), violent(1) ] H: 2
+                                             NODO: [139 - 139] [ unitedhealth(1) ] H: 0
+                                        NODO: [139 - 140] [ unitedhealth(1), violent(1) ] H: 1
+                                             NODO: [140 - 140] [ violent(1) ] H: 0
+                              NODO: [137 - 144] [ stewart(1), vilar(1), unitedhealth(1), violent(1), day(1) ] H: 3
+                                             NODO: [141 - 141] [ day(1) ] H: 0
+                                        NODO: [141 - 142] [ day(1), carey(1) ] H: 1
+                                             NODO: [142 - 142] [ carey(1) ] H: 0
+                                   NODO: [141 - 144] [ day(1), carey(1), stations(1), three(1) ] H: 2
+                                             NODO: [143 - 143] [ stations(1) ] H: 0
+                                        NODO: [143 - 144] [ stations(1), three(1) ] H: 1
+                                             NODO: [144 - 144] [ three(1) ] H: 0
+                    NODO: [129 - 160] [ cynicism(1), unitedhealth(1), law(1), madrid(1), immigration(1) ] H: 5
+                                             NODO: [145 - 145] [ alberto(1) ] H: 0
+                                        NODO: [145 - 146] [ alberto(1), europeans(1) ] H: 1
+                                             NODO: [146 - 146] [ europeans(1) ] H: 0
+                                   NODO: [145 - 148] [ alberto(1), europeans(1), stock(1), mosque(1) ] H: 2
+                                             NODO: [147 - 147] [ stock(1) ] H: 0
+                                        NODO: [147 - 148] [ stock(1), mosque(1) ] H: 1
+                                             NODO: [148 - 148] [ mosque(1) ] H: 0
+                              NODO: [145 - 152] [ alberto(1), europeans(1), stock(1), mosque(1), pension(1) ] H: 3
+                                             NODO: [149 - 149] [ pension(1) ] H: 0
+                                        NODO: [149 - 150] [ pension(1), guantanamo(1) ] H: 1
+                                             NODO: [150 - 150] [ guantanamo(1) ] H: 0
+                                   NODO: [149 - 152] [ pension(1), guantanamo(1), animals(1), mormonism(1) ] H: 2
+                                             NODO: [151 - 151] [ animals(1) ] H: 0
+                                        NODO: [151 - 152] [ animals(1), mormonism(1) ] H: 1
+                                             NODO: [152 - 152] [ mormonism(1) ] H: 0
+                         NODO: [145 - 160] [ baghdad(1), alberto(1), 3m(1), europeans(1), deadly(1) ] H: 4
+                                             NODO: [153 - 153] [ baghdad(1) ] H: 0
+                                        NODO: [153 - 154] [ baghdad(1), 3m(1) ] H: 1
+                                             NODO: [154 - 154] [ 3m(1) ] H: 0
+                                   NODO: [153 - 156] [ baghdad(1), 3m(1), deadly(1), drought(1) ] H: 2
+                                             NODO: [155 - 155] [ deadly(1) ] H: 0
+                                        NODO: [155 - 156] [ deadly(1), drought(1) ] H: 1
+                                             NODO: [156 - 156] [ drought(1) ] H: 0
+                              NODO: [153 - 160] [ baghdad(1), 3m(1), deadly(1), drought(1), gooden(1) ] H: 3
+                                             NODO: [157 - 157] [ gooden(1) ] H: 0
+                                        NODO: [157 - 158] [ gooden(1), gaza(1) ] H: 1
+                                             NODO: [158 - 158] [ gaza(1) ] H: 0
+                                   NODO: [157 - 160] [ gooden(1), gaza(1), southwest(1), power(1) ] H: 2
+                                             NODO: [159 - 159] [ southwest(1) ] H: 0
+                                        NODO: [159 - 160] [ southwest(1), power(1) ] H: 1
+                                             NODO: [160 - 160] [ power(1) ] H: 0
+               NODO: [129 - 192] [ nepal(3), unitedhealth(1), cynicism(1), law(1), madrid(1) ] H: 6
+                                             NODO: [161 - 161] [ soon(1) ] H: 0
+                                        NODO: [161 - 162] [ soon(1), pyramid(1) ] H: 1
+                                             NODO: [162 - 162] [ pyramid(1) ] H: 0
+                                   NODO: [161 - 164] [ soon(1), pyramid(1), last(1), blue(1) ] H: 2
+                                             NODO: [163 - 163] [ last(1) ] H: 0
+                                        NODO: [163 - 164] [ last(1), blue(1) ] H: 1
+                                             NODO: [164 - 164] [ blue(1) ] H: 0
+                              NODO: [161 - 168] [ soon(1), pyramid(1), last(1), blue(1), peabody(1) ] H: 3
+                                             NODO: [165 - 165] [ peabody(1) ] H: 0
+                                        NODO: [165 - 166] [ peabody(1), magazines(1) ] H: 1
+                                             NODO: [166 - 166] [ magazines(1) ] H: 0
+                                   NODO: [165 - 168] [ peabody(1), magazines(1), schools(1), bp(1) ] H: 2
+                                             NODO: [167 - 167] [ schools(1) ] H: 0
+                                        NODO: [167 - 168] [ schools(1), bp(1) ] H: 1
+                                             NODO: [168 - 168] [ bp(1) ] H: 0
+                         NODO: [161 - 176] [ pier(1), soon(1), annual(1), pyramid(1), enron(1) ] H: 4
+                                             NODO: [169 - 169] [ pier(1) ] H: 0
+                                        NODO: [169 - 170] [ pier(1), annual(1) ] H: 1
+                                             NODO: [170 - 170] [ annual(1) ] H: 0
+                                   NODO: [169 - 172] [ pier(1), annual(1), enron(1), brazil(1) ] H: 2
+                                             NODO: [171 - 171] [ enron(1) ] H: 0
+                                        NODO: [171 - 172] [ enron(1), brazil(1) ] H: 1
+                                             NODO: [172 - 172] [ brazil(1) ] H: 0
+                              NODO: [169 - 176] [ pier(1), annual(1), enron(1), brazil(1), chavez(1) ] H: 3
+                                             NODO: [173 - 173] [ chavez(1) ] H: 0
+                                        NODO: [173 - 174] [ chavez(1), korean(1) ] H: 1
+                                             NODO: [174 - 174] [ korean(1) ] H: 0
+                                   NODO: [173 - 176] [ chavez(1), korean(1), men(1), giuliani(1) ] H: 2
+                                             NODO: [175 - 175] [ men(1) ] H: 0
+                                        NODO: [175 - 176] [ men(1), giuliani(1) ] H: 1
+                                             NODO: [176 - 176] [ giuliani(1) ] H: 0
+                    NODO: [161 - 192] [ nepal(3), 2005(1), soon(1), women(1), pier(1) ] H: 5
+                                             NODO: [177 - 177] [ economy(1) ] H: 0
+                                        NODO: [177 - 178] [ economy(1), 2005(1) ] H: 1
+                                             NODO: [178 - 178] [ 2005(1) ] H: 0
+                                   NODO: [177 - 180] [ economy(1), 2005(1), palestinian(1), nepal(1) ] H: 2
+                                             NODO: [179 - 179] [ palestinian(1) ] H: 0
+                                        NODO: [179 - 180] [ palestinian(1), nepal(1) ] H: 1
+                                             NODO: [180 - 180] [ nepal(1) ] H: 0
+                              NODO: [177 - 184] [ nepal(2), economy(1), women(1), 2005(1), palestinian(1) ] H: 3
+                                             NODO: [181 - 181] [ nepal(1) ] H: 0
+                                        NODO: [181 - 182] [ nepal(1), stage(1) ] H: 1
+                                             NODO: [182 - 182] [ stage(1) ] H: 0
+                                   NODO: [181 - 184] [ w(1), nepal(1), stage(1), women(1) ] H: 2
+                                             NODO: [183 - 183] [ w(1) ] H: 0
+                                        NODO: [183 - 184] [ w(1), women(1) ] H: 1
+                                             NODO: [184 - 184] [ women(1) ] H: 0
+                         NODO: [177 - 192] [ nepal(3), economy(1), 2005(1), women(1), palestinian(1) ] H: 4
+                                             NODO: [185 - 185] [ nepal(1) ] H: 0
+                                        NODO: [185 - 186] [ nepal(1), japan(1) ] H: 1
+                                             NODO: [186 - 186] [ japan(1) ] H: 0
+                                   NODO: [185 - 188] [ nepal(1), japan(1), become(1), fans(1) ] H: 2
+                                             NODO: [187 - 187] [ become(1) ] H: 0
+                                        NODO: [187 - 188] [ become(1), fans(1) ] H: 1
+                                             NODO: [188 - 188] [ fans(1) ] H: 0
+                              NODO: [185 - 192] [ nepal(1), million(1), suicide(1), japan(1), become(1) ] H: 3
+                                             NODO: [189 - 189] [ sex(1) ] H: 0
+                                        NODO: [189 - 190] [ sex(1), million(1) ] H: 1
+                                             NODO: [190 - 190] [ million(1) ] H: 0
+                                   NODO: [189 - 192] [ sex(1), suicide(1), million(1), corrected(1) ] H: 2
+                                             NODO: [191 - 191] [ suicide(1) ] H: 0
+                                        NODO: [191 - 192] [ suicide(1), corrected(1) ] H: 1
+                                             NODO: [192 - 192] [ corrected(1) ] H: 0
+          NODO: [129 - 256] [ nepal(3), cynicism(1), unitedhealth(1), britain(1), law(1) ] H: 7
+                                             NODO: [193 - 193] [ outback(1) ] H: 0
+                                        NODO: [193 - 194] [ outback(1), patch(1) ] H: 1
+                                             NODO: [194 - 194] [ patch(1) ] H: 0
+                                   NODO: [193 - 196] [ outback(1), patch(1), britain(1), patients(1) ] H: 2
+                                             NODO: [195 - 195] [ britain(1) ] H: 0
+                                        NODO: [195 - 196] [ britain(1), patients(1) ] H: 1
+                                             NODO: [196 - 196] [ patients(1) ] H: 0
+                              NODO: [193 - 200] [ outback(1), patch(1), reds(1), britain(1), new(1) ] H: 3
+                                             NODO: [197 - 197] [ reds(1) ] H: 0
+                                        NODO: [197 - 198] [ reds(1), hamas(1) ] H: 1
+                                             NODO: [198 - 198] [ hamas(1) ] H: 0
+                                   NODO: [197 - 200] [ reds(1), hamas(1), new(1), tv(1) ] H: 2
+                                             NODO: [199 - 199] [ new(1) ] H: 0
+                                        NODO: [199 - 200] [ new(1), tv(1) ] H: 1
+                                             NODO: [200 - 200] [ tv(1) ] H: 0
+                         NODO: [193 - 208] [ outback(1), patch(1), britain(1), reds(1), new(1) ] H: 4
+                                             NODO: [201 - 201] [ week(1) ] H: 0
+                                        NODO: [201 - 202] [ week(1), taiwan(1) ] H: 1
+                                             NODO: [202 - 202] [ taiwan(1) ] H: 0
+                                   NODO: [201 - 204] [ men(1), week(1), taiwan(1), european(1) ] H: 2
+                                             NODO: [203 - 203] [ men(1) ] H: 0
+                                        NODO: [203 - 204] [ men(1), european(1) ] H: 1
+                                             NODO: [204 - 204] [ european(1) ] H: 0
+                              NODO: [201 - 208] [ week(1), men(1), taiwan(1), text(1), european(1) ] H: 3
+                                             NODO: [205 - 205] [ text(1) ] H: 0
+                                        NODO: [205 - 206] [ text(1), police(1) ] H: 1
+                                             NODO: [206 - 206] [ police(1) ] H: 0
+                                   NODO: [205 - 208] [ text(1), police(1), like(1), day(1) ] H: 2
+                                             NODO: [207 - 207] [ like(1) ] H: 0
+                                        NODO: [207 - 208] [ like(1), day(1) ] H: 1
+                                             NODO: [208 - 208] [ day(1) ] H: 0
+                    NODO: [193 - 224] [ outback(1), patch(1), salmon(1), injury(1), reds(1) ] H: 5
+                                             NODO: [209 - 209] [ salmon(1) ] H: 0
+                                        NODO: [209 - 210] [ salmon(1), year(1) ] H: 1
+                                             NODO: [210 - 210] [ year(1) ] H: 0
+                                   NODO: [209 - 212] [ salmon(1), year(1), russia(1), u(1) ] H: 2
+                                             NODO: [211 - 211] [ russia(1) ] H: 0
+                                        NODO: [211 - 212] [ russia(1), u(1) ] H: 1
+                                             NODO: [212 - 212] [ u(1) ] H: 0
+                              NODO: [209 - 216] [ salmon(1), year(1), russia(1), rabbi(1), u(1) ] H: 3
+                                             NODO: [213 - 213] [ pine(1) ] H: 0
+                                        NODO: [213 - 214] [ pine(1), german(1) ] H: 1
+                                             NODO: [214 - 214] [ german(1) ] H: 0
+                                   NODO: [213 - 216] [ pine(1), german(1), rabbi(1), firefighter(1) ] H: 2
+                                             NODO: [215 - 215] [ rabbi(1) ] H: 0
+                                        NODO: [215 - 216] [ rabbi(1), firefighter(1) ] H: 1
+                                             NODO: [216 - 216] [ firefighter(1) ] H: 0
+                         NODO: [209 - 224] [ injury(1), salmon(1), wind(1), year(1), russia(1) ] H: 4
+                                             NODO: [217 - 217] [ game(1) ] H: 0
+                                        NODO: [217 - 218] [ game(1), injury(1) ] H: 1
+                                             NODO: [218 - 218] [ injury(1) ] H: 0
+                                   NODO: [217 - 220] [ game(1), injury(1), wind(1), venezuela(1) ] H: 2
+                                             NODO: [219 - 219] [ wind(1) ] H: 0
+                                        NODO: [219 - 220] [ wind(1), venezuela(1) ] H: 1
+                                             NODO: [220 - 220] [ venezuela(1) ] H: 0
+                              NODO: [217 - 224] [ game(1), injury(1), wind(1), venezuela(1), strike(1) ] H: 3
+                                             NODO: [221 - 221] [ strike(1) ] H: 0
+                                        NODO: [221 - 222] [ strike(1), singapore(1) ] H: 1
+                                             NODO: [222 - 222] [ singapore(1) ] H: 0
+                                   NODO: [221 - 224] [ strike(1), singapore(1), israeli(1), earnings(1) ] H: 2
+                                             NODO: [223 - 223] [ israeli(1) ] H: 0
+                                        NODO: [223 - 224] [ israeli(1), earnings(1) ] H: 1
+                                             NODO: [224 - 224] [ earnings(1) ] H: 0
+               NODO: [193 - 256] [ outback(1), patch(1), britain(1), reds(1), injury(1) ] H: 6
+                                             NODO: [225 - 225] [ banks(1) ] H: 0
+                                        NODO: [225 - 226] [ banks(1), 68(1) ] H: 1
+                                             NODO: [226 - 226] [ 68(1) ] H: 0
+                                   NODO: [225 - 228] [ banks(1), 68(1), china(1), partial(1) ] H: 2
+                                             NODO: [227 - 227] [ china(1) ] H: 0
+                                        NODO: [227 - 228] [ china(1), partial(1) ] H: 1
+                                             NODO: [228 - 228] [ partial(1) ] H: 0
+                              NODO: [225 - 232] [ banks(1), 68(1), singh(1), china(1), partial(1) ] H: 3
+                                             NODO: [229 - 229] [ singh(1) ] H: 0
+                                        NODO: [229 - 230] [ singh(1), growth(1) ] H: 1
+                                             NODO: [230 - 230] [ growth(1) ] H: 0
+                                   NODO: [229 - 232] [ singh(1), growth(1), siouxsie(1), saddam(1) ] H: 2
+                                             NODO: [231 - 231] [ siouxsie(1) ] H: 0
+                                        NODO: [231 - 232] [ siouxsie(1), saddam(1) ] H: 1
+                                             NODO: [232 - 232] [ saddam(1) ] H: 0
+                         NODO: [225 - 240] [ vote(1), banks(1), 68(1), china(1), singh(1) ] H: 4
+                                             NODO: [233 - 233] [ third(1) ] H: 0
+                                        NODO: [233 - 234] [ third(1), vote(1) ] H: 1
+                                             NODO: [234 - 234] [ vote(1) ] H: 0
+                                   NODO: [233 - 236] [ third(1), vote(1), stocks(1), 15(1) ] H: 2
+                                             NODO: [235 - 235] [ stocks(1) ] H: 0
+                                        NODO: [235 - 236] [ stocks(1), 15(1) ] H: 1
+                                             NODO: [236 - 236] [ 15(1) ] H: 0
+                              NODO: [233 - 240] [ third(1), vote(1), stocks(1), 15(1), cancer(1) ] H: 3
+                                             NODO: [237 - 237] [ cancer(1) ] H: 0
+                                        NODO: [237 - 238] [ cancer(1), singh(1) ] H: 1
+                                             NODO: [238 - 238] [ singh(1) ] H: 0
+                                   NODO: [237 - 240] [ cancer(1), 11(1), singh(1), sales(1) ] H: 2
+                                             NODO: [239 - 239] [ 11(1) ] H: 0
+                                        NODO: [239 - 240] [ 11(1), sales(1) ] H: 1
+                                             NODO: [240 - 240] [ sales(1) ] H: 0
+                    NODO: [225 - 256] [ banks(1), vote(1), britain(1), 68(1), singh(1) ] H: 5
+                                             NODO: [241 - 241] [ britain(1) ] H: 0
+                                        NODO: [241 - 242] [ britain(1), march(1) ] H: 1
+                                             NODO: [242 - 242] [ march(1) ] H: 0
+                                   NODO: [241 - 244] [ britain(1), march(1), nicaragua(1), least(1) ] H: 2
+                                             NODO: [243 - 243] [ nicaragua(1) ] H: 0
+                                        NODO: [243 - 244] [ nicaragua(1), least(1) ] H: 1
+                                             NODO: [244 - 244] [ least(1) ] H: 0
+                              NODO: [241 - 248] [ britain(1), suicide(1), march(1), bae(1), nicaragua(1) ] H: 3
+                                             NODO: [245 - 245] [ fox(1) ] H: 0
+                                        NODO: [245 - 246] [ fox(1), italy(1) ] H: 1
+                                             NODO: [246 - 246] [ italy(1) ] H: 0
+                                   NODO: [245 - 248] [ fox(1), italy(1), suicide(1), bae(1) ] H: 2
+                                             NODO: [247 - 247] [ suicide(1) ] H: 0
+                                        NODO: [247 - 248] [ suicide(1), bae(1) ] H: 1
+                                             NODO: [248 - 248] [ bae(1) ] H: 0
+                         NODO: [241 - 256] [ britain(1), cents(1), march(1), suicide(1), nicaragua(1) ] H: 4
+                                             NODO: [249 - 249] [ official(1) ] H: 0
+                                        NODO: [249 - 250] [ official(1), million(1) ] H: 1
+                                             NODO: [250 - 250] [ million(1) ] H: 0
+                                   NODO: [249 - 252] [ official(1), million(1), cingular(1), omega(1) ] H: 2
+                                             NODO: [251 - 251] [ cingular(1) ] H: 0
+                                        NODO: [251 - 252] [ cingular(1), omega(1) ] H: 1
+                                             NODO: [252 - 252] [ omega(1) ] H: 0
+                              NODO: [249 - 256] [ new(1), official(1), cents(1), million(1), cingular(1) ] H: 3
+                                             NODO: [253 - 253] [ money(1) ] H: 0
+                                        NODO: [253 - 254] [ money(1), new(1) ] H: 1
+                                             NODO: [254 - 254] [ new(1) ] H: 0
+                                   NODO: [253 - 256] [ money(1), new(1), cents(1), university(1) ] H: 2
+                                             NODO: [255 - 255] [ cents(1) ] H: 0
+                                        NODO: [255 - 256] [ cents(1), university(1) ] H: 1
+                                             NODO: [256 - 256] [ university(1) ] H: 0
+NODO: [1 - 293] [ nepal(3), vaccine(2), palestinian(2), britain(1), barry(1) ] H: 9
+                                   NODO: [257 - 257] [ relay(1) ] H: 0
+                              NODO: [257 - 258] [ relay(1), adobe(1) ] H: 1
+                                   NODO: [258 - 258] [ adobe(1) ] H: 0
+                         NODO: [257 - 260] [ relay(1), adobe(1), giuliani(1), new(1) ] H: 2
+                                   NODO: [259 - 259] [ giuliani(1) ] H: 0
+                              NODO: [259 - 260] [ giuliani(1), new(1) ] H: 1
+                                   NODO: [260 - 260] [ new(1) ] H: 0
+                    NODO: [257 - 264] [ relay(1), adobe(1), giuliani(1), oscar(1), augusta(1) ] H: 3
+                                   NODO: [261 - 261] [ oscar(1) ] H: 0
+                              NODO: [261 - 262] [ oscar(1), mercedes(1) ] H: 1
+                                   NODO: [262 - 262] [ mercedes(1) ] H: 0
+                         NODO: [261 - 264] [ augusta(1), oscar(1), mercedes(1), woods(1) ] H: 2
+                                   NODO: [263 - 263] [ woods(1) ] H: 0
+                              NODO: [263 - 264] [ woods(1), augusta(1) ] H: 1
+                                   NODO: [264 - 264] [ augusta(1) ] H: 0
+               NODO: [257 - 272] [ relay(1), adobe(1), giuliani(1), roche(1), augusta(1) ] H: 4
+                                   NODO: [265 - 265] [ cases(1) ] H: 0
+                              NODO: [265 - 266] [ cases(1), samsung(1) ] H: 1
+                                   NODO: [266 - 266] [ samsung(1) ] H: 0
+                         NODO: [265 - 268] [ cases(1), samsung(1), roche(1), hamas(1) ] H: 2
+                                   NODO: [267 - 267] [ roche(1) ] H: 0
+                              NODO: [267 - 268] [ roche(1), hamas(1) ] H: 1
+                                   NODO: [268 - 268] [ hamas(1) ] H: 0
+                    NODO: [265 - 272] [ cases(1), samsung(1), roche(1), hamas(1), african(1) ] H: 3
+                                   NODO: [269 - 269] [ african(1) ] H: 0
+                              NODO: [269 - 270] [ african(1), gold(1) ] H: 1
+                                   NODO: [270 - 270] [ gold(1) ] H: 0
+                         NODO: [269 - 272] [ african(1), gold(1), korea(1), carbon(1) ] H: 2
+                                   NODO: [271 - 271] [ korea(1) ] H: 0
+                              NODO: [271 - 272] [ korea(1), carbon(1) ] H: 1
+                                   NODO: [272 - 272] [ carbon(1) ] H: 0
+          NODO: [257 - 288] [ relay(1), adobe(1), giuliani(1), roche(1), augusta(1) ] H: 5
+                                   NODO: [273 - 273] [ getty(1) ] H: 0
+                              NODO: [273 - 274] [ getty(1), enron(1) ] H: 1
+                                   NODO: [274 - 274] [ enron(1) ] H: 0
+                         NODO: [273 - 276] [ getty(1), deadly(1), enron(1), 0(1) ] H: 2
+                                   NODO: [275 - 275] [ deadly(1) ] H: 0
+                              NODO: [275 - 276] [ deadly(1), 0(1) ] H: 1
+                                   NODO: [276 - 276] [ 0(1) ] H: 0
+                    NODO: [273 - 280] [ getty(1), enron(1), deadly(1), 0(1), nuclear(1) ] H: 3
+                                   NODO: [277 - 277] [ nuclear(1) ] H: 0
+                              NODO: [277 - 278] [ nuclear(1), world(1) ] H: 1
+                                   NODO: [278 - 278] [ world(1) ] H: 0
+                         NODO: [277 - 280] [ nuclear(1), world(1), pentagon(1), cell(1) ] H: 2
+                                   NODO: [279 - 279] [ pentagon(1) ] H: 0
+                              NODO: [279 - 280] [ pentagon(1), cell(1) ] H: 1
+                                   NODO: [280 - 280] [ cell(1) ] H: 0
+               NODO: [273 - 288] [ jailed(1), getty(1), delay(1), deadly(1), enron(1) ] H: 4
+                                   NODO: [281 - 281] [ delay(1) ] H: 0
+                              NODO: [281 - 282] [ delay(1), debate(1) ] H: 1
+                                   NODO: [282 - 282] [ debate(1) ] H: 0
+                         NODO: [281 - 284] [ delay(1), debate(1), jailed(1), mediate(1) ] H: 2
+                                   NODO: [283 - 283] [ jailed(1) ] H: 0
+                              NODO: [283 - 284] [ jailed(1), mediate(1) ] H: 1
+                                   NODO: [284 - 284] [ mediate(1) ] H: 0
+                    NODO: [281 - 288] [ delay(1), debate(1), jailed(1), mediate(1), diaz(1) ] H: 3
+                                   NODO: [285 - 285] [ diaz(1) ] H: 0
+                              NODO: [285 - 286] [ diaz(1), president(1) ] H: 1
+                                   NODO: [286 - 286] [ president(1) ] H: 0
+                         NODO: [285 - 288] [ diaz(1), president(1), deadline(1), najaf(1) ] H: 2
+                                   NODO: [287 - 287] [ deadline(1) ] H: 0
+                              NODO: [287 - 288] [ deadline(1), najaf(1) ] H: 1
+                                   NODO: [288 - 288] [ najaf(1) ] H: 0
+     NODO: [257 - 293] [ relay(1), 3m(1), nikkei(1), adobe(1), giuliani(1) ] H: 6
+                         NODO: [289 - 289] [ 3m(1) ] H: 0
+                    NODO: [289 - 290] [ nikkei(1), 3m(1) ] H: 1
+                         NODO: [290 - 290] [ nikkei(1) ] H: 0
+               NODO: [289 - 292] [ 3m(1), nikkei(1), merck(1), leaguers(1) ] H: 2
+                         NODO: [291 - 291] [ merck(1) ] H: 0
+                    NODO: [291 - 292] [ merck(1), leaguers(1) ] H: 1
+                         NODO: [292 - 292] [ leaguers(1) ] H: 0
+          NODO: [289 - 293] [ nikkei(1), 3m(1), merck(1), leaguers(1), gambling(1) ] H: 3
+               NODO: [293 - 293] [ gambling(1) ] H: 0

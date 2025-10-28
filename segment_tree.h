@@ -7,6 +7,7 @@
 #include <string>
 #include <cmath>
 #include <iostream>
+#include <fstream>
 
 class segment_tree
 {
@@ -15,10 +16,12 @@ public:
     segment_tree(size_t k_topics);
 
     // Metodos
-    void insert(std::string topic);
-    void query(size_t start, size_t end);
+    std::vector<std::pair<std::string, size_t>> query(size_t start, size_t end);
     void print();
     void print_root();
+    void insert(std::string topic);
+
+    size_t get_time();
 private:
     node* root;
     size_t k_topics, size, time;
@@ -30,9 +33,10 @@ private:
     void grow_node(node** in_ptr);
     void adjust_tree(std::vector <node*>& path);
     void print_recursive(node* in_ptr, int space);
+    void recursive_query(node* in_ptr, size_t start, size_t end, std::map <size_t, size_t>& answer);
+    
 
     node** find_pos(std::vector <node*>& path);
-
 
 };
 
