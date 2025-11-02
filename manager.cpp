@@ -21,9 +21,9 @@ void manager::insert()
 	}
 }
 
-std::vector<std::pair<std::string, size_t>> manager::query(size_t start, size_t end)
+std::vector<std::pair<std::string, size_t>> manager::query(size_t start, size_t end, size_t query_size)
 {
-	return tree.query(start, end);
+	return tree.query(start, end, query_size);
 }
 
 size_t manager::get_time()

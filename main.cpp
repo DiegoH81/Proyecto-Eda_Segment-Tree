@@ -27,18 +27,19 @@ int main()
 	//managersin.print_tree();
 	std::cout << "\n\n\n";
 	managersin.print_tree_root();
-	
-	size_t last_k = 1000;
-	auto query = managersin.query(managersin.get_time() - last_k, managersin.get_time());
 
-	std::cout << "\n\n[ " << managersin.get_time() - last_k << " - " << managersin.get_time() << " ]\n";
-	std::cout << "Query: " << last_k << "\n";
+	size_t start_mark = 1;
+	size_t end_mark = 120;
+	size_t topic_size = 10;
+	auto query = managersin.query(start_mark, end_mark, topic_size);
+
+	std::cout << "\n\nQuery: [ " << start_mark << " - " << end_mark << " ]\n";
+	std::cout << "\n\nEncontro: " << query.size() << "\n";
+
 	for (auto& topic : query)
 		std::cout << topic.first << " - " << topic.second << "\n";
 		
 	std::cout << "\nTiempo que demoro en insertar: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms\n";
-	
-
 
 	/*
 	porter_algorithm port;

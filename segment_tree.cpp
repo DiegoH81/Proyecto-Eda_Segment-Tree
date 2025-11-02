@@ -2,7 +2,7 @@
 
 // Constructores
 segment_tree::segment_tree(size_t in_k_topics)
-	: root(nullptr), k_topics(in_k_topics * 2), size(0), time(0), word_to_id(), id_to_word()
+	: root(nullptr), k_topics(in_k_topics * 1.5), size(0), time(0), word_to_id(), id_to_word()
 {}
 
 
@@ -90,8 +90,13 @@ void segment_tree::print()
 	print_recursive(root, 0);
 }
 
-std::vector<std::pair<std::string, size_t>> segment_tree::query(size_t start, size_t end)
+std::vector<std::pair<std::string, size_t>> segment_tree::query(size_t start, size_t end, size_t in_k)
 {
+	if (start <= 1)
+		start = 1;
+	if (end > time)
+		end = time;
+
 	std::map <size_t, size_t> answer;
 	recursive_query(root, start, end, answer);
 
@@ -102,12 +107,12 @@ std::vector<std::pair<std::string, size_t>> segment_tree::query(size_t start, si
 
 	std::sort(new_order.begin(), new_order.end(), topic_cmp);
 
-	if (new_order.size() > k_topics)
-		new_order.resize(k_topics);
+	if (new_order.size() > in_k)
+		new_order.resize(in_k);
 
 	// Join answers
 	std::vector<std::pair<std::string, size_t>> answer_vec;
-	answer_vec.reserve(k_topics);
+	answer_vec.reserve(in_k);
 
 	for (auto& topic : new_order)
 		answer_vec.push_back({ id_to_word[topic.first], topic.second });
@@ -129,6 +134,15 @@ void segment_tree::recursive_query(node* in_ptr, size_t range_start, size_t rang
 
 	if (ptr_start == range_start && ptr_end == range_end)
 	{
+		if (in_ptr->top_topics.size() < k_topics)
+		{
+			if (in_ptr->left)
+				recursive_query(in_ptr->left, range_start, in_ptr->left->end, answer);
+			if (in_ptr->right)
+				recursive_query(in_ptr->right, in_ptr->right->start, range_end, answer);
+			return;
+		}
+
 		for (auto& topic : in_ptr->top_topics)
 			answer[topic.first] += topic.second;
 

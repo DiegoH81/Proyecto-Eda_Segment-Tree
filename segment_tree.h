@@ -16,7 +16,7 @@ public:
     segment_tree(size_t k_topics);
 
     // Metodos
-    std::vector<std::pair<std::string, size_t>> query(size_t start, size_t end);
+    std::vector<std::pair<std::string, size_t>> query(size_t start, size_t end, size_t in_k);
     void print();
     void print_root();
     void insert(std::vector<std::pair<std::string, size_t>>& topics);

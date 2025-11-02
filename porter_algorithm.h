@@ -36,7 +36,7 @@ private:
     void step_5_b(std::string& in_word);
 
 
-    bool is_vowel(char in_c);
+    bool is_vowel(std::string& str, size_t index);
     size_t get_measure(std::string& in_word);
     std::string get_prefix(std::string& in_word, std::string& suffix);
     

@@ -70,7 +70,6 @@ std::vector<std::pair<std::string, size_t>> data_reader::get_current_trending_to
 					porter.porter_stem(word);
 					helper[word]++;
 				}
-
 			}
 		}
 

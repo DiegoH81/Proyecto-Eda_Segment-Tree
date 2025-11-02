@@ -53,22 +53,35 @@ void porter_algorithm::debug(std::string in_word)
 
 }
 
-bool porter_algorithm::is_vowel(char in_c)
+bool porter_algorithm::is_vowel(std::string& str, size_t index)
 {
-	return in_c == 'a' || in_c == 'e' || in_c == 'i' || in_c == 'o'|| in_c == 'u';
+	if (index >= str.size())
+		return false;
+
+	char& c = str[index];
+	if (c == 'y')
+	{
+		if (index == 0)
+			return true;
+
+		if (!is_vowel(str, index - 1))
+			return true;
+
+	}
+	else if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+		return true;
+
+	return false;
 }
 
 size_t porter_algorithm::get_measure(std::string& in_word)
 {
 	size_t measure = 0;
-
-	char prev = 0;
-
-	for (auto& c : in_word)
+	
+	for (size_t i = 1; i < in_word.size(); i++)
 	{
-		if (prev && is_vowel(prev) && !is_vowel(c))
+		if (is_vowel(in_word, i - 1) && !is_vowel(in_word, i))
 			measure++;
-		prev = c;
 	}
 
 	return measure;
@@ -106,9 +119,8 @@ void porter_algorithm::step_1_a(std::string& in_word)
 {
 	for (auto& rule : rules_1_a)
 	{
-		std::string prefix;
 		std::string& suffix = rule.s1;
-		prefix = get_prefix(in_word, suffix);
+		std::string prefix = get_prefix(in_word, suffix);
 
 		if (prefix.empty())
 			continue;
@@ -153,7 +165,6 @@ void porter_algorithm::step_1_b(std::string& in_word)
 				return;
 			}
 
-			
 			if (_d(in_word) && in_word.back() != 'l'
 							&& in_word.back() != 's'
 							&& in_word.back() != 'z')
@@ -286,8 +297,8 @@ bool porter_algorithm::_v_(std::string& in_word) // Has a vowel
 {
 	if (in_word.size() >= 1)
 	{
-		for (auto& c : in_word)
-			if (is_vowel(c))
+		for (size_t i = 0; i < in_word.size(); i++)
+			if (is_vowel(in_word, i))
 				return true;
 	}
 
@@ -298,12 +309,11 @@ bool porter_algorithm::_d(std::string& in_word) // Ends with double consonant
 {
 	if (in_word.size() >= 2)
 	{
-		char &a = in_word[in_word.size() - 1];
-		char &b = in_word[in_word.size() - 2];
+		size_t a = in_word.size() - 1;
+		size_t b = in_word.size() - 2;
 
-		if (!is_vowel(a) && !is_vowel(b) && (a == b))
+		if (!is_vowel(in_word, a) && !is_vowel(in_word, b) && (in_word[a] == in_word[b]))
 			return true;
-
 	}
 
 	return false;
@@ -313,11 +323,11 @@ bool porter_algorithm::_o(std::string& in_word) // Ends with cvc, where the seco
 {
 	if (in_word.size() >= 3)
 	{
-		char& a = in_word[in_word.size() - 1];
-		char& b = in_word[in_word.size() - 2];
-		char& c = in_word[in_word.size() - 3];
+		size_t a = in_word.size() - 1;
+		size_t b = in_word.size() - 2;
+		size_t c = in_word.size() - 3;
 
-		if (!is_vowel(a) && is_vowel(b) && !is_vowel(c))
+		if (!is_vowel(in_word, a) && is_vowel(in_word, b) && !is_vowel(in_word, c))
 		{
 			if (a != 'w' && a != 'x' && a != 'y')
 				return true;
