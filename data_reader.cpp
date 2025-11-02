@@ -1,7 +1,7 @@
 #include "data_reader.h"
 
 // Constructor
-data_reader::data_reader(std::string s_w_path)
+data_reader::data_reader(std::string s_w_path): porter()
 {
 	load_stop_words(s_w_path);
 }
@@ -65,8 +65,12 @@ std::string data_reader::get_current_trending_topic()
 			while (ss >> word)
 			{
 
+
 				if (stop_words.find(word) == stop_words.end()) // Not a stopword
+				{
+					porter.porter_stem(word);
 					helper[word]++;
+				}
 
 			}
 		}

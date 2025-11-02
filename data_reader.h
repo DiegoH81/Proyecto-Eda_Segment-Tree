@@ -11,6 +11,8 @@
 #include <cctype>
 #include <stdexcept>
 
+#include "porter_algorithm.h"
+
 class data_reader
 {
 public:
@@ -25,6 +27,7 @@ public:
 private:
 	std::unordered_set<std::string> stop_words;
 	std::queue<std::string> files;
+	porter_algorithm porter;
 
 	// Metodos
 	void load_stop_words(std::string file_path);

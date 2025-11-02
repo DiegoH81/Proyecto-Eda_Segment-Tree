@@ -2,10 +2,11 @@
 #include <chrono>
 #include "manager.h"
 
+#include "porter_algorithm.h"
+
 
 int main()
 {
-
 	std::string stop_words_path = "stopwords.txt";
 	std::string files_path = "C:\\Users\\diego\\OneDrive\\Escritorio\\EDA\\archivos_txt\\AP_BBC_CNN_Reuters_nosource_nodate_novo_nofull\\";
 
@@ -36,4 +37,12 @@ int main()
 		std::cout << topic.first << " - " << topic.second << "\n";
 		
 	std::cout << "\nTiempo que demoro en insertar: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms\n";
+	
+
+
+	/*
+	porter_algorithm port;
+	port.debug("us");
+	*/
+
 }
