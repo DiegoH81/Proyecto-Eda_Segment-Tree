@@ -33,10 +33,11 @@ void data_reader::load_files(std::string folder_path)
 	//std::cout << "s: " << files.size() << "\n";
 }
 
-std::string data_reader::get_current_trending_topic()
+std::vector<std::pair<std::string, size_t>> data_reader::get_current_trending_topic(size_t& limit)
 {
 	std::unordered_map <std::string, size_t> helper;
-	std::string trending_topic;
+	std::vector<std::pair<std::string, size_t>> trending_topics;
+
 
 	if (!is_empty())
 	{
@@ -64,8 +65,6 @@ std::string data_reader::get_current_trending_topic()
 			std::string word;
 			while (ss >> word)
 			{
-
-
 				if (stop_words.find(word) == stop_words.end()) // Not a stopword
 				{
 					porter.porter_stem(word);
@@ -78,16 +77,25 @@ std::string data_reader::get_current_trending_topic()
 		file.close();
 	}
 
-	size_t count = 0;
-
+	
+	// Get maximum freq
+	size_t max_count = 0;
 	for (auto& it : helper)
-		if (it.second > count)
-		{
-			trending_topic = it.first;
-			count = it.second;
-		}
+		if (it.second > max_count)
+			max_count = it.second;
 
-	return trending_topic;
+	// Those words that have the same freq
+	for (auto& it : helper)
+	{
+		if (it.second == max_count)
+		{
+			trending_topics.push_back({ it.first, it.second });
+			if (trending_topics.size() >= limit)
+				break;
+		}
+	}
+
+	return trending_topics;
 }
 
 void data_reader::to_lower_str(std::string& in_string)

@@ -7,19 +7,25 @@ segment_tree::segment_tree(size_t in_k_topics)
 
 
 // Funciones
-void segment_tree::insert(std::string topic)
+void segment_tree::insert(std::vector<std::pair<std::string, size_t>>& topics)
 {
 	time++;
 	size++;
 
-	process_topic(topic);
-	
-	size_t id = word_to_id[topic];
+	topic_vector topics_data;
+	topics_data.reserve(topics.size());
+
+	for (auto& topic : topics)
+	{
+		process_topic(topic.first);
+		topics_data.push_back({ word_to_id[topic.first] , topic.second });
+	}
+
 
 	std::vector<node*> path;
 	node** pos = find_pos(path);
 
-	*pos = new node(time, time, { {id, 1} }, 0, k_topics);
+	*pos = new node(time, time, topics_data, 0, k_topics);
 	adjust_tree(path);
 }
 

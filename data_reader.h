@@ -21,7 +21,7 @@ public:
 
 	// Metodos
 	void load_files(std::string folder_path);
-	std::string get_current_trending_topic();
+	std::vector<std::pair<std::string, size_t>> get_current_trending_topic(size_t& limit);
 	bool is_empty();
 
 private:

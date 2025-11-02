@@ -19,7 +19,7 @@ public:
     std::vector<std::pair<std::string, size_t>> query(size_t start, size_t end);
     void print();
     void print_root();
-    void insert(std::string topic);
+    void insert(std::vector<std::pair<std::string, size_t>>& topics);
 
     size_t get_time();
 private:

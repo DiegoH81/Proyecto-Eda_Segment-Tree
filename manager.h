@@ -23,6 +23,7 @@ public:
 private:
 	data_reader reader;
 	segment_tree tree;
+	size_t k_topics;
 };
 
 #endif

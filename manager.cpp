@@ -2,7 +2,7 @@
 
 // Constructor
 manager::manager(size_t k_topics, std::string stop_words_path):
-	tree(k_topics), reader(stop_words_path)
+	tree(k_topics), reader(stop_words_path), k_topics(k_topics)
 { }
 
 // Funciones
@@ -16,8 +16,8 @@ void manager::insert()
 {
 	if (!reader.is_empty())
 	{
-		std::string trending_topic = reader.get_current_trending_topic();
-		tree.insert(trending_topic);
+		auto trending_topics = reader.get_current_trending_topic(k_topics);
+		tree.insert(trending_topics);
 	}
 }
 
