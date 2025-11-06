@@ -44,3 +44,27 @@ bool manager::is_empty()
 {
 	return reader.is_empty();
 }
+
+void manager::export_query(std::vector<std::pair<std::string, size_t>>& query)
+{
+	std::ofstream file("query.txt", std::ios::out);
+
+	if (!file.is_open())
+		throw std::runtime_error("No se pudo abrir el archivo: query.txt");
+
+	for (auto& topic : query)
+		file << topic.first << " " << topic.second << "\n";
+
+	file.close();
+}
+
+void manager::open_python(std::string path)
+{
+	std::string command = "start /B python \"" + path + "\"";
+
+	system(command.c_str());
+}
+size_t manager::size()
+{
+	return reader.size();
+}

@@ -134,6 +134,7 @@ void segment_tree::recursive_query(node* in_ptr, size_t range_start, size_t rang
 
 	if (ptr_start == range_start && ptr_end == range_end)
 	{
+		/*
 		if (in_ptr->top_topics.size() < k_topics)
 		{
 			if (in_ptr->left)
@@ -142,7 +143,7 @@ void segment_tree::recursive_query(node* in_ptr, size_t range_start, size_t rang
 				recursive_query(in_ptr->right, in_ptr->right->start, range_end, answer);
 			return;
 		}
-
+		*/
 		for (auto& topic : in_ptr->top_topics)
 			answer[topic.first] += topic.second;
 

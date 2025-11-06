@@ -23,7 +23,7 @@ public:
 	void load_files(std::string folder_path);
 	std::vector<std::pair<std::string, size_t>> get_current_trending_topic(size_t& limit);
 	bool is_empty();
-
+	size_t size();
 private:
 	std::unordered_set<std::string> stop_words;
 	std::queue<std::string> files;

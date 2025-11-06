@@ -29,7 +29,6 @@ void data_reader::load_files(std::string folder_path)
 		//std::cout << entry.path().string() << "\n";
 		files.push(entry.path().string());
 	}
-
 	//std::cout << "s: " << files.size() << "\n";
 }
 
@@ -45,7 +44,6 @@ std::vector<std::pair<std::string, size_t>> data_reader::get_current_trending_to
 		files.pop();
 
 		//std::cout << "FILE PATH: " << file_path << "\n";
-
 
 		std::ifstream file(file_path);
 
@@ -112,4 +110,6 @@ void data_reader::remove_puctuation(std::string& in_string)
 
 
 bool data_reader::is_empty() { return files.empty(); }
+
+size_t data_reader::size() { return files.size(); }
 

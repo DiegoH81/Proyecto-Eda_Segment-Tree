@@ -1,6 +1,9 @@
 #ifndef MANAGER_H
 #define MANAGER_H
 
+#include <fstream>
+#include <cstdlib>
+
 #include "segment_tree.h"
 #include "data_reader.h"
 
@@ -15,10 +18,13 @@ public:
 	void insert();
 	void print_tree();
 	void print_tree_root();
+	void export_query(std::vector<std::pair<std::string, size_t>>& query);
+	void open_python(std::string path);
 
 	std::vector<std::pair<std::string, size_t>> query(size_t start, size_t end, size_t in_k);
 	size_t get_time();
 	bool is_empty();
+	size_t size();
 
 private:
 	data_reader reader;
