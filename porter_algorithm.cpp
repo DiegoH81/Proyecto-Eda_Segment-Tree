@@ -27,7 +27,7 @@ void porter_algorithm::porter_stem(std::string& in_word)
 	step_5_b(in_word);
 }
 
-void porter_algorithm::debug(std::string in_word)
+void porter_algorithm::debug(std::string &in_word)
 {
 	std::cout << "INCIO: " << in_word << "\n";
 	std::cout << "m: " << get_measure(in_word) << "\n";
@@ -119,7 +119,7 @@ void porter_algorithm::step_1_a(std::string& in_word)
 {
 	for (auto& rule : rules_1_a)
 	{
-		std::string& suffix = rule.s1;
+		std::string suffix = rule.s1;
 		std::string prefix = get_prefix(in_word, suffix);
 
 		if (prefix.empty())
@@ -134,7 +134,7 @@ void porter_algorithm::step_1_b(std::string& in_word)
 {
 	for (auto& rule : rules_1_b)
 	{
-		std::string& suffix = rule.s1;
+		std::string suffix = rule.s1;
 		std::string prefix = get_prefix(in_word, suffix);
 
 
@@ -202,7 +202,7 @@ void porter_algorithm::step_2(std::string& in_word)
 {
 	for (auto& rule : rules_2)
 	{
-		std::string& suffix = rule.s1;
+		std::string suffix = rule.s1;
 		std::string prefix = get_prefix(in_word, suffix);
 
 		if (prefix.empty())
@@ -220,7 +220,7 @@ void porter_algorithm::step_3(std::string& in_word)
 {
 	for (auto& rule : rules_3)
 	{
-		std::string& suffix = rule.s1;
+		std::string suffix = rule.s1;
 		std::string prefix = get_prefix(in_word, suffix);
 
 		if (prefix.empty())
@@ -238,7 +238,7 @@ void porter_algorithm::step_4(std::string& in_word)
 {
 	for (auto& rule : rules_4)
 	{
-		std::string& suffix = rule.s1;
+		std::string suffix = rule.s1;
 		std::string prefix = get_prefix(in_word, suffix);
 
 		if (prefix.empty())

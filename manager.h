@@ -11,7 +11,8 @@ class manager
 {
 public:
 	// Constructor
-	manager(size_t k_topics, std::string stop_words_path);
+	manager(size_t k_topics, std::string stop_words_path, std::string path_script, std::string path_txt);
+	manager(std::string stop_words_path = "stopwords.txt", std::string path_script = "graficador.py", std::string path_txt = "query.txt");
 
 	// Metodos
 	void load_files(std::string folder_path);
@@ -19,7 +20,11 @@ public:
 	void print_tree();
 	void print_tree_root();
 	void export_query(std::vector<std::pair<std::string, size_t>>& query);
-	void open_python(std::string path);
+	void open_python(std::string seconds);
+
+	// Menu
+	void menu();
+	void configure();
 
 	std::vector<std::pair<std::string, size_t>> query(size_t start, size_t end, size_t in_k);
 	size_t get_time();
@@ -30,6 +35,12 @@ private:
 	data_reader reader;
 	segment_tree tree;
 	size_t k_topics;
+	std::string path_script, path_txt;
+	
+	// Menu
+	void manual_mode();
+	void batch_mode();
+	void complete_mode();
 };
 
 #endif

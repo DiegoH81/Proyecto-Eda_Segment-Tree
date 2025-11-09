@@ -14,6 +14,8 @@ class segment_tree
 public:
     // Constructor
     segment_tree(size_t k_topics);
+    segment_tree();
+    ~segment_tree();
 
     // Metodos
     std::vector<std::pair<std::string, size_t>> query(size_t start, size_t end, size_t in_k);
@@ -35,6 +37,7 @@ private:
     void print_recursive(node* in_ptr, int space);
     void recursive_query(node* in_ptr, size_t start, size_t end, std::map <size_t, size_t>& answer);
     
+    void recursive_destructor(node **in_ptr);
 
     node** find_pos(std::vector <node*>& path);
 

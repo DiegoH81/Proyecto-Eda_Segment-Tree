@@ -1,7 +1,7 @@
 #include "data_reader.h"
 
 // Constructor
-data_reader::data_reader(std::string s_w_path): porter()
+data_reader::data_reader(std::string s_w_path): porter(), n_files(0)
 {
 	load_stop_words(s_w_path);
 }
@@ -29,6 +29,7 @@ void data_reader::load_files(std::string folder_path)
 		//std::cout << entry.path().string() << "\n";
 		files.push(entry.path().string());
 	}
+	n_files = files.size();
 	//std::cout << "s: " << files.size() << "\n";
 }
 
@@ -65,33 +66,41 @@ std::vector<std::pair<std::string, size_t>> data_reader::get_current_trending_to
 			{
 				if (stop_words.find(word) == stop_words.end()) // Not a stopword
 				{
+					std::string prev = word;
 					porter.porter_stem(word);
 					helper[word]++;
 				}
 			}
 		}
 
+		// Get maximum freq
+		size_t max_count = 0;
+		for (auto& it : helper)
+			if (it.second > max_count)
+				max_count = it.second;
+
+		// Those words that have the same freq
+		for (auto& it : helper)
+		{
+			if (it.second == max_count)
+			{
+				trending_topics.push_back({ it.first, 1 });
+				if (trending_topics.size() >= limit)
+					break;
+			}
+		}
+
+		/*
+		std::cout << file_path << ":\n";
+		for (auto& topic : trending_topics)
+			std::cout << topic.first << "\t";
+		std::cout << "\n";
+		*/
+
 		file.close();
 	}
 
 	
-	// Get maximum freq
-	size_t max_count = 0;
-	for (auto& it : helper)
-		if (it.second > max_count)
-			max_count = it.second;
-
-	// Those words that have the same freq
-	for (auto& it : helper)
-	{
-		if (it.second == max_count)
-		{
-			trending_topics.push_back({ it.first, it.second });
-			if (trending_topics.size() >= limit)
-				break;
-		}
-	}
-
 	return trending_topics;
 }
 
@@ -111,5 +120,5 @@ void data_reader::remove_puctuation(std::string& in_string)
 
 bool data_reader::is_empty() { return files.empty(); }
 
-size_t data_reader::size() { return files.size(); }
+size_t data_reader::size() { return n_files; }
 

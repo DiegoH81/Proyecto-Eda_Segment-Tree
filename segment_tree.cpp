@@ -5,6 +5,21 @@ segment_tree::segment_tree(size_t in_k_topics)
 	: root(nullptr), k_topics(in_k_topics * 1.5), size(0), time(0), word_to_id(), id_to_word()
 {}
 
+segment_tree::segment_tree()
+	: root(nullptr), k_topics(0), size(0), time(0), word_to_id(), id_to_word()
+{
+}
+
+segment_tree::~segment_tree()
+{
+	if (root)
+	{
+		word_to_id.clear();
+		id_to_word.clear();
+		recursive_destructor(&root);
+	}
+}
+
 
 // Funciones
 void segment_tree::insert(std::vector<std::pair<std::string, size_t>>& topics)
@@ -92,10 +107,14 @@ void segment_tree::print()
 
 std::vector<std::pair<std::string, size_t>> segment_tree::query(size_t start, size_t end, size_t in_k)
 {
-	if (start <= 1)
+	if (start < 1)
 		start = 1;
 	if (end > time)
 		end = time;
+	if (start > end)
+		std::swap(start, end);
+	if (start > time)
+		start = end = time;
 
 	std::map <size_t, size_t> answer;
 	recursive_query(root, start, end, answer);
@@ -124,7 +143,6 @@ void segment_tree::recursive_query(node* in_ptr, size_t range_start, size_t rang
 {
 	if (!in_ptr)
 		return;
-
 
 	size_t& ptr_start = in_ptr->start;
 	size_t& ptr_end = in_ptr->end;
@@ -217,3 +235,15 @@ void segment_tree::print_root()
 }
 
 size_t segment_tree::get_time() { return time; }
+
+void segment_tree::recursive_destructor(node** in_ptr)
+{
+	if (!*in_ptr)
+		return;
+
+	recursive_destructor(&((*in_ptr)->left));
+	recursive_destructor(&((*in_ptr)->right));
+
+	delete* in_ptr;
+	*in_ptr = nullptr;
+}

@@ -28,6 +28,8 @@ private:
 	std::unordered_set<std::string> stop_words;
 	std::queue<std::string> files;
 	porter_algorithm porter;
+	size_t n_files;
+
 
 	// Metodos
 	void load_stop_words(std::string file_path);

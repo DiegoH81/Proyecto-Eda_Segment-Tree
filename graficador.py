@@ -1,35 +1,24 @@
-import time
-import os
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+import sys
 
+#ruta = "C:\\Users\\diego\\source\\repos\\Proyecto-Eda_Segment-Tree\\Proyecto-Eda_Segment-Tree\\query.txt"
 
-ruta = "C:\\Users\\diego\\source\\repos\\Proyecto-Eda_Segment-Tree\\Proyecto-Eda_Segment-Tree\\query.txt"
+ruta = sys.argv[1]
+segundos = float(sys.argv[2])
 
-mod_time = 0
-plt.ion()
+datos = {}
+file = open(ruta, "r")
+for line in file:
+    palabra, repeticiones = line.strip().split()
+    datos[palabra] = int(repeticiones)
 
-fig, ax = plt.subplots()
+wc = WordCloud(width=800, height=400, background_color="white")
+wc.generate_from_frequencies(datos)
 
-while True:
-    mod = os.path.getmtime(ruta)
+plt.imshow(wc, interpolation="bilinear")
+plt.axis("off")
+plt.draw()
 
-    if (mod != mod_time):
-        datos = {}
-        file = open(ruta, "r")
-        for line in file:
-            palabra, repeticiones = line.strip().split()
-            datos[palabra] = int(repeticiones)
-
-        wc = WordCloud(width=800, height=400, background_color="white")
-        wc.generate_from_frequencies(datos)
-
-        ax.clear()
-        ax.imshow(wc, interpolation="bilinear")
-        ax.axis("off")
-        plt.draw()
-        plt.pause(0.1)
-
-        plt.show()
-
-        mod_time = mod
+plt.pause(segundos)
+plt.close()
