@@ -20,9 +20,33 @@ segment_tree::~segment_tree()
 	}
 }
 
+segment_tree& segment_tree::operator=(const segment_tree& other)
+{
+	if (this == &other)
+		return *this;
+
+	
+	if (root)
+		recursive_destructor(&root);
+	root = nullptr;
+
+	
+	k_topics = other.k_topics;
+	size = other.size;
+	time = other.time;
+	word_to_id = other.word_to_id;
+	id_to_word = other.id_to_word;
+
+	if (other.root)
+		root = new node(*other.root);
+	else
+		root = nullptr;
+
+	return *this;
+}
 
 // Funciones
-void segment_tree::insert(std::vector<std::pair<std::string, size_t>>& topics)
+void segment_tree::insert(vector<pair<std::string, size_t>>& topics)
 {
 	time++;
 	size++;
@@ -33,24 +57,27 @@ void segment_tree::insert(std::vector<std::pair<std::string, size_t>>& topics)
 	for (auto& topic : topics)
 	{
 		process_topic(topic.first);
-		topics_data.push_back({ word_to_id[topic.first] , topic.second });
+
+		auto value = word_to_id.find(topic.first);
+
+		topics_data.push_back({ *value , topic.second });
 	}
 
 
-	std::vector<node*> path;
+	vector<node*> path;
 	node** pos = find_pos(path);
 
 	*pos = new node(time, time, topics_data, 0, k_topics);
 	adjust_tree(path);
 }
 
-node** segment_tree::find_pos(std::vector<node*>& path)
+node** segment_tree::find_pos(vector<node*>& path)
 {
 	node** ptr = &root;
 
 	while (*ptr)
 	{
-		size_t max_limits = std::pow(2, (*ptr)->height);
+		size_t max_limits = my_pow(2, (*ptr)->height);
 		size_t cur_size = (*ptr)->end - (*ptr)->start + 1;
 		
 		if (cur_size >= max_limits)
@@ -60,7 +87,7 @@ node** segment_tree::find_pos(std::vector<node*>& path)
 		path.push_back(*ptr);
 
 		size_t& start = (*ptr)->start;
-		size_t end = start + std::pow(2, (*ptr)->height) - 1;
+		size_t end = start + my_pow(2, (*ptr)->height) - 1;
 
 		size_t mid = (start + end) / 2;
 
@@ -73,7 +100,7 @@ node** segment_tree::find_pos(std::vector<node*>& path)
 	return ptr;
 }
 
-void segment_tree::adjust_tree(std::vector <node*>& path)
+void segment_tree::adjust_tree(vector <node*>& path)
 {
 	while (!path.empty())
 	{
@@ -87,9 +114,11 @@ void segment_tree::adjust_tree(std::vector <node*>& path)
 
 void segment_tree::process_topic(std::string& in_topic)
 {
-	if (word_to_id.find(in_topic) == word_to_id.end()) // New word
+	auto value = word_to_id.find(in_topic);
+
+	if (value == nullptr) // New word
 	{
-		word_to_id[in_topic] = id_to_word.size();
+		word_to_id.insert(in_topic, id_to_word.size());
 		id_to_word.push_back(in_topic);
 	}
 }
@@ -105,41 +134,43 @@ void segment_tree::print()
 	print_recursive(root, 0);
 }
 
-std::vector<std::pair<std::string, size_t>> segment_tree::query(size_t start, size_t end, size_t in_k)
+vector<pair<std::string, size_t>> segment_tree::query(size_t start, size_t end, size_t in_k)
 {
 	if (start < 1)
 		start = 1;
-	if (end > time)
-		end = time;
+	if (end < 1)
+		end = 1;
 	if (start > end)
 		std::swap(start, end);
+	if (end > time)
+		end = time;
 	if (start > time)
-		start = end = time;
+		start = time;
 
-	std::map <size_t, size_t> answer;
+	unordered_map<size_t, size_t, int_hash> answer;
 	recursive_query(root, start, end, answer);
 
-	std::vector<std::pair<size_t, size_t>> new_order;
+	vector<topic> new_order;
 
 	for (auto& item : answer)
-		new_order.push_back({ item.first, item.second });
+		new_order.push_back(topic(item.first, item.second));
 
-	std::sort(new_order.begin(), new_order.end(), topic_cmp);
-
+	new_order.sort(topic_cmp);
+	
 	if (new_order.size() > in_k)
 		new_order.resize(in_k);
 
 	// Join answers
-	std::vector<std::pair<std::string, size_t>> answer_vec;
+	vector<pair<std::string, size_t>> answer_vec;
 	answer_vec.reserve(in_k);
 
 	for (auto& topic : new_order)
-		answer_vec.push_back({ id_to_word[topic.first], topic.second });
+		answer_vec.push_back({ id_to_word[topic.id], topic.frequency});
 
 	return answer_vec;
 }
 
-void segment_tree::recursive_query(node* in_ptr, size_t range_start, size_t range_end, std::map <size_t, size_t>& answer)
+void segment_tree::recursive_query(node* in_ptr, size_t range_start, size_t range_end, unordered_map<size_t, size_t, int_hash>& answer)
 {
 	if (!in_ptr)
 		return;
@@ -163,12 +194,12 @@ void segment_tree::recursive_query(node* in_ptr, size_t range_start, size_t rang
 		}
 		*/
 		for (auto& topic : in_ptr->top_topics)
-			answer[topic.first] += topic.second;
+			answer.insert(topic.id, topic.frequency);
 
 		return;
 	}
 
-	size_t end = ptr_start + std::pow(2, in_ptr->height) - 1;
+	size_t end = ptr_start + my_pow(2, in_ptr->height) - 1;
 
 	size_t mid = (ptr_start + end) / 2;
 
@@ -199,9 +230,9 @@ void segment_tree::print_recursive(node* in_ptr, int space)
 	std::cout << "NODO: [" << in_ptr->start << " - " << in_ptr->end << "] [ ";
 	for (int i = 0; i < in_ptr->top_topics.size(); i++)
 	{
-		size_t id = in_ptr->top_topics[i].first;
+		size_t id = in_ptr->top_topics[i].id;
 
-		size_t count = in_ptr->top_topics[i].second;
+		size_t count = in_ptr->top_topics[i].frequency;
 		std::string& word = id_to_word[id];
 		
 		std::cout << word << "(" << count << ")";
@@ -221,9 +252,9 @@ void segment_tree::print_root()
 	std::cout << "NODO: [" << root->start << " - " << root->end << "] [ ";
 	for (int i = 0; i < root->top_topics.size(); i++)
 	{
-		size_t id = root->top_topics[i].first;
+		size_t id = root->top_topics[i].id;
 
-		size_t count = root->top_topics[i].second;
+		size_t count = root->top_topics[i].frequency;
 		std::string& word = id_to_word[id];
 
 		std::cout << word << "(" << count << ")";

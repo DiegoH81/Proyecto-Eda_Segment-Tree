@@ -14,7 +14,7 @@ public:
 
     void porter_stem(std::string& in_word);
 
-    void debug(std::string& in_word);
+    void debug(std::string in_word);
 
 private:
 

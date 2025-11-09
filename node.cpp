@@ -20,28 +20,29 @@ void node::update_height()
 
 void node::merge()
 {
-    std::unordered_map <size_t, size_t> helper;
+    unordered_map <size_t, size_t, int_hash> helper;
 
 
     if (left)
     {
         for (auto& data : left->top_topics)
-            helper[data.first] += data.second;
+            helper.insert(data.id, data.frequency);
     }
 
     if (right)
     {
         for (auto& data : right->top_topics)
-            helper[data.first] += data.second;
+            helper.insert(data.id, data.frequency);
     }
 
-    std::vector<std::pair<size_t, size_t>> new_order;
+    vector<topic> new_order;
     new_order.reserve(helper.size());
 
     for (auto& item : helper)
         new_order.push_back({ item.first, item.second });
 
-    std::sort(new_order.begin(), new_order.end(), topic_cmp);
+    new_order.sort(topic_cmp);
+
     if (new_order.size() > k_topics)
         new_order.resize(k_topics);
 
@@ -49,7 +50,7 @@ void node::merge()
 }
 
 
-bool topic_cmp(std::pair<size_t, size_t>& a, std::pair<size_t, size_t>& b)
+bool topic_cmp(topic& a, topic& b)
 {
-    return a.second > b.second;
+    return a.frequency > b.frequency;
 }

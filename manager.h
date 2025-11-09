@@ -3,7 +3,10 @@
 
 #include <fstream>
 #include <cstdlib>
+#include <chrono>
 
+#include "pair.h"
+#include "vector.h"
 #include "segment_tree.h"
 #include "data_reader.h"
 
@@ -19,14 +22,14 @@ public:
 	void insert();
 	void print_tree();
 	void print_tree_root();
-	void export_query(std::vector<std::pair<std::string, size_t>>& query);
+	void export_query(vector<pair<std::string, size_t>>& query);
 	void open_python(std::string seconds);
 
 	// Menu
-	void menu();
+	void menu(std::string time_manual, std::string time_batch, std::string time_complete);
 	void configure();
 
-	std::vector<std::pair<std::string, size_t>> query(size_t start, size_t end, size_t in_k);
+	vector<pair<std::string, size_t>> query(size_t start, size_t end, size_t in_k);
 	size_t get_time();
 	bool is_empty();
 	size_t size();
@@ -38,9 +41,9 @@ private:
 	std::string path_script, path_txt;
 	
 	// Menu
-	void manual_mode();
-	void batch_mode();
-	void complete_mode();
+	void manual_mode(std::string time);
+	void batch_mode(std::string time);
+	void complete_mode(std::string time);
 };
 
 #endif
