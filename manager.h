@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <cstdlib>
+#include "vector.h"
 
 #include "segment_tree.h"
 #include "data_reader.h"

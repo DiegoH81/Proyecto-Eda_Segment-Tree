@@ -1,13 +1,12 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <vector>
 #include <unordered_map>
-#include <algorithm>
+#include "vector.h"
+#include "topic.h"
 
-
-using topic_vector = std::vector<std::pair<size_t, size_t>>;
-bool topic_cmp(std::pair<size_t, size_t>& a, std::pair<size_t, size_t>& b);
+using topic_vector = vector<topic>;
+bool topic_cmp(topic &a, topic& b);
 
 class node
 {
