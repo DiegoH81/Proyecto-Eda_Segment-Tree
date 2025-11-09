@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <cstdlib>
+#include <chrono>
 
 #include "pair.h"
 #include "vector.h"
@@ -25,7 +26,7 @@ public:
 	void open_python(std::string seconds);
 
 	// Menu
-	void menu();
+	void menu(std::string time_manual, std::string time_batch, std::string time_complete);
 	void configure();
 
 	vector<pair<std::string, size_t>> query(size_t start, size_t end, size_t in_k);
@@ -40,9 +41,9 @@ private:
 	std::string path_script, path_txt;
 	
 	// Menu
-	void manual_mode();
-	void batch_mode();
-	void complete_mode();
+	void manual_mode(std::string time);
+	void batch_mode(std::string time);
+	void complete_mode(std::string time);
 };
 
 #endif
