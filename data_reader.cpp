@@ -68,6 +68,8 @@ std::vector<std::pair<std::string, size_t>> data_reader::get_current_trending_to
 				{
 					std::string prev = word;
 					porter.porter_stem(word);
+					//if (word == "e")
+					//	std::cout << prev << " - " << word << "\n";
 					helper[word]++;
 				}
 			}

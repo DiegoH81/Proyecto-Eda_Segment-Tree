@@ -21,26 +21,19 @@ void manager::insert()
 	{
 		auto trending_topics = reader.get_current_trending_topic(k_topics);
 
-		vector<std::pair<std::string, size_t>> my_vector;
+		vector<pair<std::string, size_t>> my_vector;
 		my_vector.reserve(trending_topics.size());
 
 		for (auto& tpc : trending_topics)
-			my_vector.push_back(tpc);
+			my_vector.push_back(pair(tpc.first, tpc.second));
 
 		tree.insert(my_vector);
 	}
 }
 
-std::vector<std::pair<std::string, size_t>> manager::query(size_t start, size_t end, size_t query_size)
+vector<pair<std::string, size_t>> manager::query(size_t start, size_t end, size_t query_size)
 {
-	auto q = tree.query(start, end, query_size);;
-
-	std::vector<std::pair<std::string, size_t>> vec;
-	vec.reserve(q.size());
-
-	for (auto& tpc : q)
-		vec.push_back(tpc);
-	return vec;
+	return tree.query(start, end, query_size);
 }
 
 size_t manager::get_time()
@@ -62,7 +55,7 @@ bool manager::is_empty()
 	return reader.is_empty();
 }
 
-void manager::export_query(std::vector<std::pair<std::string, size_t>>& query)
+void manager::export_query(vector<pair<std::string, size_t>>& query)
 {
 	std::ofstream file(path_txt, std::ios::out);
 

@@ -20,19 +20,19 @@ void node::update_height()
 
 void node::merge()
 {
-    std::unordered_map <size_t, size_t> helper;
+    unordered_map <size_t, size_t, int_hash> helper;
 
 
     if (left)
     {
         for (auto& data : left->top_topics)
-            helper[data.id] += data.frequency;
+            helper.insert(data.id, data.frequency);
     }
 
     if (right)
     {
         for (auto& data : right->top_topics)
-            helper[data.id] += data.frequency;
+            helper.insert(data.id, data.frequency);
     }
 
     vector<topic> new_order;
@@ -42,6 +42,7 @@ void node::merge()
         new_order.push_back({ item.first, item.second });
 
     new_order.sort(topic_cmp);
+
     if (new_order.size() > k_topics)
         new_order.resize(k_topics);
 

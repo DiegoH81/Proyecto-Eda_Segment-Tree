@@ -27,7 +27,7 @@ void porter_algorithm::porter_stem(std::string& in_word)
 	step_5_b(in_word);
 }
 
-void porter_algorithm::debug(std::string &in_word)
+void porter_algorithm::debug(std::string in_word)
 {
 	std::cout << "INCIO: " << in_word << "\n";
 	std::cout << "m: " << get_measure(in_word) << "\n";
@@ -175,8 +175,7 @@ void porter_algorithm::step_1_b(std::string& in_word)
 			}
 			else if ((get_measure(in_word) == 1) && (_o(in_word)))
 			{
-				prefix = in_word.substr(0, in_word.size() - 3);
-				in_word = prefix + "e";
+				in_word += "e";
 				return;
 			}
 		}
@@ -329,7 +328,7 @@ bool porter_algorithm::_o(std::string& in_word) // Ends with cvc, where the seco
 
 		if (!is_vowel(in_word, a) && is_vowel(in_word, b) && !is_vowel(in_word, c))
 		{
-			if (a != 'w' && a != 'x' && a != 'y')
+			if (in_word[a] != 'w' && in_word[a] != 'x' && in_word[a] != 'y')
 				return true;
 		}
 	}

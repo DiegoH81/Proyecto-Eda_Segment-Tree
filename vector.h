@@ -1,6 +1,6 @@
 #ifndef VECTOR_H
 #define VECTOR_H
-#include "sort.h"
+#include "funciones.h"
 
 template <class T>
 class vector_iterator
@@ -23,12 +23,12 @@ public:
 		return temp;
 	}
 
-	bool operator==(vector_iterator& other)
+	bool operator==(const vector_iterator& other)
 	{
 		return ptr == other.ptr;
 	}
 
-	bool operator!=(vector_iterator& other)
+	bool operator!=(const vector_iterator& other)
 	{
 		return ptr != other.ptr;
 	}
@@ -56,16 +56,12 @@ public:
 	//Constructores
 	vector() :data(nullptr), _size(0), capacity(0)
 	{}
-	vector(vector& other):
-		data(nullptr), _size(other._size), capacity(other.capacity)
+	vector(const vector& other):
+		data(nullptr), _size(0), capacity(0)
 	{
-		if (_size)
-		{
-			data = new T[capacity];
-
-			for (size_t i = 0; i < _size; i++)
-				data[i] = other.data[i];
-		}
+		reserve(other._size);
+		for (size_t i = 0; i < other._size; ++i)
+			push_back(other.data[i]);
 	}
 	~vector()
 	{
@@ -76,30 +72,23 @@ public:
 	{
 		if (this != &other)
 		{
-			if (data)
-				delete[] data;
+			clear();
+			reserve(other._size);
 
-			_size = other._size;
-			capacity = other.capacity;
-			data = nullptr;
-
-			if (_size)
-			{
-				data = new T[capacity];
-
-				for (size_t i = 0; i < _size; i++)
-					data[i] = other.data[i];
-			}
+			for (size_t i = 0; i < other._size; ++i)
+				push_back(other.data[i]);
 		}
 		return *this;
 	}
+
+
 	T& operator[](size_t idx)
 	{
 		return *(data + idx);
 	}
 
 	//Metodos
-	void push_back(T value)
+	void push_back(const T& value)
 	{
 		if (_size == capacity)
 		{

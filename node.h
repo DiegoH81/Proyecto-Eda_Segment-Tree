@@ -1,9 +1,10 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <unordered_map>
 #include "vector.h"
 #include "topic.h"
+#include "unordered_map.h"
+#include "funciones.h"
 
 using topic_vector = vector<topic>;
 bool topic_cmp(topic &a, topic& b);
