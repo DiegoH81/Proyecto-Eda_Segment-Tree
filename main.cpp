@@ -3,8 +3,6 @@
 #include <thread>
 
 #include "manager.h"
-
-
 #include "porter_algorithm.h"
 #include "funciones.h"
 #include "vector.h"

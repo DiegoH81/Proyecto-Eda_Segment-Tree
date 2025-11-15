@@ -20,5 +20,8 @@ plt.imshow(wc, interpolation="bilinear")
 plt.axis("off")
 plt.draw()
 
-plt.pause(segundos)
-plt.close()
+if segundos == -1:
+    plt.show()
+else:
+    plt.pause(segundos)
+    plt.close()
