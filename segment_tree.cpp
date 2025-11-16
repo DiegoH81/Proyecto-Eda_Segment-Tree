@@ -1,14 +1,11 @@
 #include "segment_tree.h"
 
 // Constructores
-segment_tree::segment_tree(size_t in_k_topics)
-	: root(nullptr), k_topics(in_k_topics * 1.5), size(0), time(0), word_to_id(), id_to_word()
+segment_tree::segment_tree(size_t in_k_topics, size_t in_update)
+	: root(nullptr), k_topics(in_k_topics * 1.5), size(0),
+	  time(0), word_to_id(), id_to_word(), update_time(in_update)
 {}
 
-segment_tree::segment_tree()
-	: root(nullptr), k_topics(0), size(0), time(0), word_to_id(), id_to_word()
-{
-}
 
 segment_tree::~segment_tree()
 {
@@ -48,6 +45,14 @@ segment_tree& segment_tree::operator=(const segment_tree& other)
 // Funciones
 void segment_tree::insert(vector<pair<std::string, size_t>>& topics)
 {
+	
+	if (time % update_time == 0 && root)
+	{
+		//std::cout << time << " - " << update_time << "\n";
+		//std::cout << "MERGE GLOBAL\n";
+		root->merge();
+	}
+
 	time++;
 	size++;
 
@@ -67,7 +72,7 @@ void segment_tree::insert(vector<pair<std::string, size_t>>& topics)
 	vector<node*> path;
 	node** pos = find_pos(path);
 
-	*pos = new node(time, time, topics_data, 0, k_topics);
+	*pos = new node(time, time, topics_data, 0, k_topics, nullptr, nullptr, true);
 	adjust_tree(path);
 }
 
@@ -85,6 +90,7 @@ node** segment_tree::find_pos(vector<node*>& path)
 
 		(*ptr)->end = time; // Adjust limits
 		path.push_back(*ptr);
+		(*ptr)->updated = false;
 
 		size_t& start = (*ptr)->start;
 		size_t end = start + my_pow(2, (*ptr)->height) - 1;
@@ -108,7 +114,6 @@ void segment_tree::adjust_tree(vector <node*>& path)
 		path.pop_back();
 
 		ptr->update_height();
-		ptr->merge();	
 	}
 }
 
@@ -193,6 +198,12 @@ void segment_tree::recursive_query(node* in_ptr, size_t range_start, size_t rang
 			return;
 		}
 		*/
+
+		//std::cout << "MERGE EN QUERY\n";
+
+		if (!in_ptr->updated)
+			in_ptr->merge();
+
 		for (auto& topic : in_ptr->top_topics)
 			answer.insert(topic.id, topic.frequency);
 
@@ -267,6 +278,7 @@ void segment_tree::print_root()
 
 size_t segment_tree::get_time() { return time; }
 
+
 void segment_tree::recursive_destructor(node** in_ptr)
 {
 	if (!*in_ptr)
@@ -277,4 +289,9 @@ void segment_tree::recursive_destructor(node** in_ptr)
 
 	delete* in_ptr;
 	*in_ptr = nullptr;
+}
+
+bool segment_tree::is_empty()
+{
+	return root == nullptr;
 }

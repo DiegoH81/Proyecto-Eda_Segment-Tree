@@ -2,7 +2,6 @@
 #define DATA_READER_H
 
 #include <string>
-#include <sstream>
 #include <queue>
 #include <filesystem>
 #include <fstream>
@@ -33,8 +32,9 @@ private:
 
 	// Metodos
 	void load_stop_words(std::string file_path);
-	void to_lower_str(std::string& in_string);
-	void remove_puctuation(std::string& in_string);
+	void process_word(std::string& in_string);
+	void tokenize(std::string& in_string, std::vector<std::string>& tokens);
+
 };
 
 #endif

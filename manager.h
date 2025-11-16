@@ -19,14 +19,14 @@ public:
 
 	// Metodos
 	void load_files(std::string folder_path);
-	void insert();
+	void insert(double& process_time, double& insert_time);
 	void print_tree();
 	void print_tree_root();
 	void export_query(vector<pair<std::string, size_t>>& query);
 	void open_python(std::string seconds);
 
 	// Menu
-	void menu(std::string time_manual, std::string time_batch, std::string time_complete);
+	void menu(std::string time_manual, std::string time_batch, std::string time_complete, std::string time_q);
 	void configure();
 
 	vector<pair<std::string, size_t>> query(size_t start, size_t end, size_t in_k);
@@ -44,6 +44,7 @@ private:
 	void manual_mode(std::string time);
 	void batch_mode(std::string time);
 	void complete_mode(std::string time);
+	void query_mode(std::string time);
 };
 
 #endif

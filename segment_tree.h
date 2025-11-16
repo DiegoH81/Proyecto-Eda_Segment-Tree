@@ -8,16 +8,15 @@
 #include "funciones.h"
 #include "pair.h"
 
-#include <string>
-#include <iostream>
 
+#include <string>
+//#include <iostream>
 
 class segment_tree
 {
 public:
     // Constructor
-    segment_tree(size_t k_topics);
-    segment_tree();
+    segment_tree(size_t in_k_topics = 0, size_t in_update = 8192);
     ~segment_tree();
 
     segment_tree& operator=(const segment_tree& other);
@@ -29,10 +28,12 @@ public:
     void print_root();
     void insert(vector<pair<std::string, size_t>>& topics);
 
+    bool is_empty();
+
     size_t get_time();
 private:
     node* root;
-    size_t k_topics, size, time;
+    size_t k_topics, size, time, update_time;
     unordered_map <std::string, size_t, string_hash> word_to_id;
     vector <std::string> id_to_word;
 
@@ -44,7 +45,6 @@ private:
     void recursive_query(node* in_ptr, size_t start, size_t end, unordered_map<size_t, size_t, int_hash>& answer);
     
     void recursive_destructor(node **in_ptr);
-
     node** find_pos(vector<node*>& path);
 
 };

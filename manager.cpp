@@ -15,11 +15,17 @@ void manager::load_files(std::string folder_path)
 	reader.load_files(folder_path);
 }
 
-void manager::insert()
+void manager::insert(double &process_time, double &insert_time)
 {
 	if (!reader.is_empty())
 	{
+		// Pre-process time (porter, tokenize, etc)
+		auto start_pre = std::chrono::high_resolution_clock::now();
 		auto trending_topics = reader.get_current_trending_topic(k_topics);
+		auto end_pre = std::chrono::high_resolution_clock::now();
+
+		process_time += std::chrono::duration_cast<std::chrono::milliseconds>(end_pre - start_pre).count();
+
 
 		vector<pair<std::string, size_t>> my_vector;
 		my_vector.reserve(trending_topics.size());
@@ -27,7 +33,12 @@ void manager::insert()
 		for (auto& tpc : trending_topics)
 			my_vector.push_back(pair(tpc.first, tpc.second));
 
+		// Insert time
+		auto start_insert = std::chrono::high_resolution_clock::now();
 		tree.insert(my_vector);
+		auto end_insert = std::chrono::high_resolution_clock::now();
+
+		insert_time += std::chrono::duration_cast<std::chrono::nanoseconds>(end_insert - start_insert).count();
 	}
 }
 
@@ -91,7 +102,7 @@ void manager::configure()
 	tree = segment_tree(k_topics);
 }
 
-void manager::menu(std::string time_manual, std::string time_batch, std::string time_complete)
+void manager::menu(std::string time_manual, std::string time_batch, std::string time_complete, std::string time_q)
 {
 	while (true)
 	{
@@ -99,6 +110,7 @@ void manager::menu(std::string time_manual, std::string time_batch, std::string 
 		std::cout << "1. Insercion manual (una por una)\n";
 		std::cout << "2. Insercion por lotes (10% de archivos)\n";
 		std::cout << "3. Ejecucion completa\n";
+		std::cout << "4. Ejecutar query\n";
 		std::cout << "0. Salir\n";
 		std::cout << "Opcion: ";
 
@@ -114,6 +126,9 @@ void manager::menu(std::string time_manual, std::string time_batch, std::string 
 			break;
 		case 3:
 			complete_mode(time_complete);
+			break;
+		case 4:
+			query_mode(time_q);
 			break;
 		case 0:
 			return;
@@ -138,10 +153,10 @@ void manager::manual_mode(std::string time)
 	std::cout << "2. Mostrar rango personalizado\n";
 	std::cout << "Opción: \n";
 	std::cin >> subop;
+	
+	double process_time = 0, insert_time = 0;
+	insert(process_time, insert_time);
 
-	auto start_insert = std::chrono::high_resolution_clock::now();
-	insert();
-	auto end_insert = std::chrono::high_resolution_clock::now();
 
 	size_t K;
 	std::cout << "Ingrese K (numero de topicos): ";
@@ -173,10 +188,11 @@ void manager::manual_mode(std::string time)
 	auto q = query(start_mark, end_mark, K);
 	auto end_query = std::chrono::high_resolution_clock::now();
 	
-	auto duration_insert = std::chrono::duration_cast<std::chrono::milliseconds>(end_insert - start_insert).count();
-	std::cout << "Tiempo de insert(): " << duration_insert << " ms\n";
-	auto duration_query = std::chrono::duration_cast<std::chrono::milliseconds>(end_query - start_query).count();
-	std::cout << "Tiempo de query(): " << duration_query << " ms\n";
+	auto duration_query = std::chrono::duration_cast<std::chrono::nanoseconds>(end_query - start_query).count();
+	
+	std::cout << "Tiempo de insert(): " << insert_time << " ms\n";
+	std::cout << "Tiempo de pre-procesado(): " << process_time << " ns\n";
+	std::cout << "Tiempo de query(): " << duration_query << " ns\n";
 
 	export_query(q);
 	open_python(time);
@@ -220,20 +236,15 @@ void manager::batch_mode(std::string time)
 	size_t limit = size() / 10;
 	size_t step = limit / 10;
 
-	double total_insert_time = 0;
-	double total_query_time = 0;
-
+	double query_time = 0;
+	double process_time = 0;
+	double insert_time = 0;
 	std::cout << "Procesando: " << limit << " topicos\n";
 
 	// Process batch
 	for (size_t i = 0; i < limit && !reader.is_empty(); ++i)
 	{
-		auto start_insert = std::chrono::high_resolution_clock::now();
-		insert();
-		auto end_insert = std::chrono::high_resolution_clock::now();
-		total_insert_time += std::chrono::duration_cast<std::chrono::milliseconds>(end_insert - start_insert).count();
-
-
+		insert(process_time, insert_time);
 
 		if (i % step == 0)
 		{
@@ -248,7 +259,7 @@ void manager::batch_mode(std::string time)
 			auto start_query = std::chrono::high_resolution_clock::now();
 			auto q = query(start_mark, end_mark, K);
 			auto end_query = std::chrono::high_resolution_clock::now();
-			total_query_time += std::chrono::duration_cast<std::chrono::milliseconds>(end_query - start_query).count();
+			query_time += std::chrono::duration_cast<std::chrono::nanoseconds>(end_query - start_query).count();
 			export_query(q);
 			open_python(time);
 		}
@@ -256,11 +267,17 @@ void manager::batch_mode(std::string time)
 
 	size_t query_count = limit / step;
 
-	double avg_insert = double(total_insert_time) / limit;
-	double avg_query = double(total_query_time) / query_count;
-
-	std::cout << "Tiempo promedio de insert(): " << avg_insert << " ms\n";
-	std::cout << "Tiempo promedio de query(): " << avg_query << " ms\n";
+	
+	std::cout << "\n-------------------------------------------------\n";
+	std::cout << "Tiempo total de insert(): " << insert_time / 1000000000 << " s\n";
+	std::cout << "Tiempo promedio de insert(): " << insert_time / limit<< " ns\n";
+	std::cout << "-------------------------------------------------\n";
+	std::cout << "Tiempo total de pre-procesado(): " << process_time / 1000 << " s\n";
+	std::cout << "Tiempo promedio de pre-procesado(): " << process_time / limit << " ms\n";
+	std::cout << "-------------------------------------------------\n";
+	std::cout << "Tiempo total de query(): " << query_time / 1000000 << " ms\n";
+	std::cout << "Tiempo promedio de query(): " << query_time / query_count << " ns\n";
+	std::cout << "-------------------------------------------------\n\n";
 }
 
 void manager::complete_mode(std::string time)
@@ -273,15 +290,37 @@ void manager::complete_mode(std::string time)
 
 	double total_insert_time = 0;
 	
+	int temp_size = size();
+	/*
+	std::cout << "size: " << temp_size << "\n";
 
-	size_t max_size = size();
+	std::cout << "PERC SIZE: " << perc << "\n";
+	*/
+	int perc = temp_size / 1000;
+
+
+	size_t limit = size();
+
+	int counter = 0;
+	int perc_counter = 0;
+
+	double query_time = 0;
+	double process_time = 0;
+	double insert_time = 0;
 
 	while (!reader.is_empty())
 	{
-		auto start_insert = std::chrono::high_resolution_clock::now();
-		insert();
-		auto end_insert = std::chrono::high_resolution_clock::now();
-		total_insert_time += std::chrono::duration_cast<std::chrono::milliseconds>(end_insert - start_insert).count();
+		/*
+		if (counter % perc == 0)
+		{
+			//std::cout << perc_counter << "\n";
+			perc_counter++;
+		}
+		*/
+
+		insert(process_time, insert_time);
+
+		counter++;
 	}
 
 	int subop;
@@ -323,12 +362,47 @@ void manager::complete_mode(std::string time)
 	auto q = query(start_mark, end_mark, K);
 	auto end_query = std::chrono::high_resolution_clock::now();
 
-	auto total_query_time = std::chrono::duration_cast<std::chrono::milliseconds>(end_query - start_query).count();
+	query_time = std::chrono::duration_cast<std::chrono::nanoseconds>(end_query - start_query).count();
 
-	double avg_insert_time = double(total_insert_time) / max_size;
-	std::cout << "Tiempo total de insert(): " << std::fixed << total_insert_time << " ms\n";
-	std::cout << "Tiempo promedio por insert(): " << std::fixed << avg_insert_time << " ms\n";
-	std::cout << "Tiempo de query(): " << std::fixed << total_query_time << " us\n";
+
+	std::cout << "\n-------------------------------------------------\n";
+	std::cout << "Tiempo total de insert(): " << insert_time / 1000000000 << " s\n";
+	std::cout << "Tiempo promedio de insert(): " << insert_time / limit << " ns\n";
+	std::cout << "-------------------------------------------------\n";
+	std::cout << "Tiempo total de pre-procesado(): " << process_time / 1000 << " s\n";
+	std::cout << "Tiempo promedio de pre-procesado(): " << process_time / limit << " ms\n";
+	std::cout << "-------------------------------------------------\n";
+	std::cout << "Tiempo total de query(): " << query_time << " ns\n";
+	std::cout << "-------------------------------------------------\n\n";
+	export_query(q);
+	open_python(time);
+}
+
+void manager::query_mode(std::string time)
+{
+	if (tree.is_empty())
+	{
+		std::cout << "El arbol esta vacio, no se pueden hacer queries.\n";
+		return;
+	}
+	size_t K;
+	size_t start_mark, end_mark;
+
+	std::cout << "Inicio del rango: ";
+	std::cin >> start_mark;
+	std::cout << "Fin del rango: ";
+	std::cin >> end_mark;
+	std::cout << "Cantidad K de topicos: ";
+	std::cin >> K;
+
+	auto start_query = std::chrono::high_resolution_clock::now();
+	auto q = query(start_mark, end_mark, K);
+	auto end_query = std::chrono::high_resolution_clock::now();
+
+	auto query_time = std::chrono::duration_cast<std::chrono::nanoseconds>(end_query - start_query).count();
+
+	std::cout << "Tiempo de query(): " << query_time << " ns\n";
+
 	export_query(q);
 	open_python(time);
 }

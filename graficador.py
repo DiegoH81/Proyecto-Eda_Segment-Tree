@@ -14,7 +14,9 @@ for line in file:
     datos[palabra] = int(repeticiones)
 
 wc = WordCloud(width=800, height=400, background_color="white")
-wc.generate_from_frequencies(datos)
+
+if datos:
+    wc.generate_from_frequencies(datos)
 
 plt.imshow(wc, interpolation="bilinear")
 plt.axis("off")
