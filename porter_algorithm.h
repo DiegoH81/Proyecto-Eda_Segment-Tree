@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+
 #include "rule_porter.h"
 
 class porter_algorithm
@@ -19,8 +20,6 @@ public:
 private:
 
     std::vector<rule_porter> rules_1_a,
-                             rules_1_b,
-                             rules_1_b_opt,
                              rules_2,
                              rules_3,
                              rules_4;
@@ -37,19 +36,20 @@ private:
 
 
     bool is_vowel(std::string& str, size_t index);
-    size_t get_measure(std::string& in_word);
-    std::string get_prefix(std::string& in_word, std::string& suffix);
+    bool prefix_has_vowel(std::string& word, size_t prefix_len);
+
+    size_t get_measure_limits(std::string& word, size_t length);
+    bool ends_with(std::string& word, const std::string& suffix);
+
     
     // Condiciones
     bool _s(std::string& in_word); // Ends with s
-    bool _v_(std::string& in_word); // Has a vowel
+    bool _v_(std::string& in_word, size_t length); // Has a vowel
     bool _d(std::string& in_word); // Ends with double consonant
-    bool _o(std::string& in_word); // Ends with cvc, where the second c is not W, X or Y
+    bool _o(std::string& in_word, size_t length); // Ends with cvc, where the second c is not W, X or Y
 
     // Inicializadores
     void init_rules_1_a();
-    void init_rules_1_b();
-    void init_rules_1_b_opt();
     void init_rules_2();
     void init_rules_3();
     void init_rules_4();

@@ -33,9 +33,9 @@ void data_reader::load_files(std::string folder_path)
 	}
 	
 	
-	/*
+	
 	int counter = 0;
-	int limit = 1000000;
+	int limit = 100000;
 	while (counter < limit)
 	{
 		for (int i = 0; i < temp.size() && counter < limit; i++)
@@ -44,7 +44,8 @@ void data_reader::load_files(std::string folder_path)
 			counter++;
 		}
 	}
-	*/
+	
+	
 	
 
 	n_files = files.size();
