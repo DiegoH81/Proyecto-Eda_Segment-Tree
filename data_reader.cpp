@@ -33,7 +33,7 @@ void data_reader::load_files(std::string folder_path)
 	}
 	
 	
-	
+	/*
 	int counter = 0;
 	int limit = 100000;
 	while (counter < limit)
@@ -45,6 +45,7 @@ void data_reader::load_files(std::string folder_path)
 		}
 	}
 	
+	*/
 	
 	
 
