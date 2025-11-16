@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <chrono>
 #include <thread>
 
@@ -10,17 +10,29 @@
 
 int main()
 {
-	std::string files_path = "C:\\Users\\diego\\OneDrive\\Escritorio\\EDA\\archivos_txt\\AP_BBC_CNN_Reuters_nosource_nodate_novo_nofull\\";
-	std::string time_manual = "25",
-				time_batch = "10",
-				time_complete = "25";
+	
+	
+	std::string files_path = "D:\\Archivos_EDA\\AP_BBC_CNN_Reuters_nosource_nodate_novo_nofull\\";
+
+	std::string time_manual = "-1",
+				time_batch = "-1",
+				time_complete = "-1",
+				time_query = "-1";
 
 	manager managersin;
-	
+
 	managersin.load_files(files_path);
 	managersin.configure();
-	managersin.menu(time_manual, time_batch, time_complete);
-	
+	managersin.menu(time_manual, time_batch, time_complete, time_query);
 
-    return 0;
+
+	
+	
+	/*
+	std::string test = "university";
+
+	porter_algorithm pt;
+	pt.debug(test);
+	*/
+	return 0;
 }

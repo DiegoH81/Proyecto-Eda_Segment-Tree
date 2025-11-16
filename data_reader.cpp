@@ -24,11 +24,30 @@ void data_reader::load_stop_words(std::string file_path)
 
 void data_reader::load_files(std::string folder_path)
 {
+	std::vector<std::string> temp;
 	for (auto& entry : std::filesystem::directory_iterator(folder_path))
 	{
 		//std::cout << entry.path().string() << "\n";
 		files.push(entry.path().string());
+		temp.push_back(entry.path().string());
 	}
+	
+	
+	
+	int counter = 0;
+	int limit = 100000;
+	while (counter < limit)
+	{
+		for (int i = 0; i < temp.size() && counter < limit; i++)
+		{
+			files.push(temp[i]);
+			counter++;
+		}
+	}
+	
+	
+	
+
 	n_files = files.size();
 	//std::cout << "s: " << files.size() << "\n";
 }
@@ -56,20 +75,17 @@ std::vector<std::pair<std::string, size_t>> data_reader::get_current_trending_to
 
 		while (std::getline(file, buffer))
 		{
-			to_lower_str(buffer);
-			remove_puctuation(buffer);
-
-			std::stringstream ss(buffer);
+			std::vector<std::string> tokens;
+			process_word(buffer);
+			tokenize(buffer, tokens);
 
 			std::string word;
-			while (ss >> word)
+			for (auto& word : tokens)
 			{
 				if (stop_words.find(word) == stop_words.end()) // Not a stopword
 				{
 					std::string prev = word;
 					porter.porter_stem(word);
-					//if (word == "e")
-					//	std::cout << prev << " - " << word << "\n";
 					helper[word]++;
 				}
 			}
@@ -106,21 +122,52 @@ std::vector<std::pair<std::string, size_t>> data_reader::get_current_trending_to
 	return trending_topics;
 }
 
-void data_reader::to_lower_str(std::string& in_string)
-{
-	for (char& c : in_string)
-		c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
-}
 
-void data_reader::remove_puctuation(std::string& in_string)
-{
-	for (char& c : in_string)
-		if (std::ispunct(static_cast<unsigned char>(c)))
-			c = ' ';
-}
 
 
 bool data_reader::is_empty() { return files.empty(); }
 
 size_t data_reader::size() { return n_files; }
 
+void data_reader::process_word(std::string& s)
+{
+	for (char& c : s)
+	{
+		unsigned char x = c;
+
+		if (x >= 'A' && x <= 'Z')
+		{
+			c = x + 32;
+			continue;
+		}
+
+		if ((x < 'a' || x > 'z') && (x < '0' || x > '9'))
+			c = ' ';
+	}
+}
+
+void data_reader::tokenize(std::string& in_string, std::vector<std::string>& tokens)
+{
+	tokens.clear();
+	tokens.reserve(64);
+
+	std::string cur;
+	cur.reserve(32);
+
+	for (char c : in_string)
+	{
+		if (c == ' ')
+		{
+			if (!cur.empty())
+			{
+				tokens.push_back(cur);
+				cur.clear();
+			}
+		}
+		else
+			cur.push_back(c);
+	}
+
+	if (!cur.empty())
+		tokens.push_back(cur);
+}
