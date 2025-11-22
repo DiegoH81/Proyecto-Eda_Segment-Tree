@@ -38,11 +38,12 @@ private:
 
     // Methods
     void process_topic(std::string& in_topic);
-    void grow_node(node** in_ptr);
+    void grow_node(node** in_tr);
     void adjust_tree(vector <node*>& path);
     void print_recursive(node* in_ptr, int space);
     void recursive_query(node* in_ptr, size_t start, size_t end, unordered_map<size_t, size_t, int_hash>& answer);
     void recursive_destructor(node **in_ptr);
+
     node* deep_copy_tree(node* in_ptr);
 
     node** find_pos(vector<node*>& path);

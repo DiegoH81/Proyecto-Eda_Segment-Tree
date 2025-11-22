@@ -4,7 +4,6 @@
 #include <string>
 
 // Methods
-
 template <typename T, typename Compare>
 void quick_sort(T* begin, T* end, Compare comp)
 {
@@ -79,6 +78,14 @@ inline size_t my_max(size_t& a, size_t& b)
 		return a;
 	else
 		return b;
+}
+
+template <typename T>
+inline void my_swap(T& a, T& b)
+{
+	T temp = a;
+	b = a;
+	a = temp;
 }
 
 #endif
