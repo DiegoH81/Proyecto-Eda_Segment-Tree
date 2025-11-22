@@ -6,6 +6,7 @@ class topic
 public:
 	size_t id, frequency;
 
+	// Constructor
 	topic():
 		id(0), frequency(0)
 	{ }

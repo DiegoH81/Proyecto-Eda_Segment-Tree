@@ -18,7 +18,7 @@ public:
 	// Constructor
 	data_reader(std::string s_w_path);
 
-	// Metodos
+	// Methods
 	void load_files(std::string folder_path);
 	std::vector<std::pair<std::string, size_t>> get_current_trending_topic(size_t& limit);
 	bool is_empty();
@@ -29,12 +29,10 @@ private:
 	porter_algorithm porter;
 	size_t n_files;
 
-
-	// Metodos
+	// Methods
 	void load_stop_words(std::string file_path);
 	void process_word(std::string& in_string);
 	void tokenize(std::string& in_string, std::vector<std::string>& tokens);
-
 };
 
 #endif

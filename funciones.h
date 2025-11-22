@@ -3,6 +3,8 @@
 
 #include <string>
 
+// Methods
+
 template <typename T, typename Compare>
 void quick_sort(T* begin, T* end, Compare comp)
 {
@@ -15,8 +17,10 @@ void quick_sort(T* begin, T* end, Compare comp)
 
 	while (left <= right)
 	{
-		while (comp(*left, pivot)) ++left;
-		while (comp(pivot, *right)) --right;
+		while (comp(*left, pivot))
+			++left;
+		while (comp(pivot, *right))
+			--right;
 
 		if (left <= right)
 		{
@@ -35,7 +39,7 @@ void quick_sort(T* begin, T* end, Compare comp)
 class string_hash
 {
 public:
-	size_t operator()(const std::string& str) const
+	size_t operator()(const std::string& str)
 	{
 		size_t h = 0;
 		for (char c : str)
@@ -47,7 +51,7 @@ public:
 class int_hash
 {
 public:
-	size_t operator()(size_t x) const
+	size_t operator()(size_t x)
 	{
 		x = ((x >> 16) ^ x) * 0x45d9f3bu;
 		x = ((x >> 16) ^ x) * 0x45d9f3bu;
@@ -67,6 +71,14 @@ inline size_t my_pow(size_t x, size_t n)
 		to_return *= x;
 
 	return to_return;
+}
+
+inline size_t my_max(size_t& a, size_t& b)
+{
+	if (a > b)
+		return a;
+	else
+		return b;
 }
 
 #endif

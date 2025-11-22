@@ -6,7 +6,7 @@ template <class T>
 class vector_iterator
 {
 public:
-	// Constructores
+	// Constructor
 	vector_iterator(T* in_ptr) :
 		ptr(in_ptr) {}
 
@@ -23,12 +23,12 @@ public:
 		return temp;
 	}
 
-	bool operator==(const vector_iterator& other)
+	bool operator==(vector_iterator& other)
 	{
 		return ptr == other.ptr;
 	}
 
-	bool operator!=(const vector_iterator& other)
+	bool operator!=(vector_iterator& other)
 	{
 		return ptr != other.ptr;
 	}
@@ -53,16 +53,18 @@ class vector
 public:
 	using iterator = vector_iterator<T>;
 
-	//Constructores
+	// Constructor
 	vector() :data(nullptr), _size(0), capacity(0)
 	{}
-	vector(const vector& other):
+
+	vector(vector& other):
 		data(nullptr), _size(0), capacity(0)
 	{
 		reserve(other._size);
 		for (size_t i = 0; i < other._size; ++i)
 			push_back(other.data[i]);
 	}
+
 	~vector()
 	{
 		clear();
@@ -81,13 +83,12 @@ public:
 		return *this;
 	}
 
-
 	T& operator[](size_t idx)
 	{
 		return *(data + idx);
 	}
 
-	//Metodos
+	// Methods
 	void push_back(const T& value)
 	{
 		if (_size == capacity)
@@ -104,11 +105,13 @@ public:
 		data[_size] = value;
 		_size++;
 	}
+
 	void pop_back()
 	{
 		if (_size)
 			_size--;
 	}
+
 	void clear()
 	{
 		if (data)
@@ -118,6 +121,7 @@ public:
 			_size = capacity = 0;
 		}
 	}
+
 	void reserve(size_t new_capacity)
 	{
 		if (new_capacity <= capacity)
@@ -134,6 +138,7 @@ public:
 		data = new_data;
 		capacity = new_capacity;
 	}
+	
 	void resize(size_t new_size)
 	{
 		if (new_size < _size)
@@ -150,12 +155,8 @@ public:
 		_size = new_size;
 	}
 
-	bool empty()
-	{
-		if (_size == 0)
-			return true;
-		return false;
-	}
+	bool empty() { return _size == 0; }
+
 	template <class OP>
 	void sort(OP op)
 	{
@@ -174,14 +175,13 @@ public:
 	{
 		return vector_iterator<T>(data);
 	}
+
 	iterator end()
 	{
 		return vector_iterator<T>(data + _size);
 	}
-	size_t size()
-	{
-		return _size;
-	}
+
+	size_t size() { return _size; }
 private:
 	T* data;
 	size_t _size;
