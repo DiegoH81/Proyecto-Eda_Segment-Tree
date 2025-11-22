@@ -1,6 +1,6 @@
 #include "node.h"
 
-// Constructores
+// Constructor
 node::node() :
     start(-1), end(-1), left(nullptr), right(nullptr), top_topics(), height(-1), k_topics(-1), updated(false)
 {}
@@ -9,20 +9,20 @@ node::node(size_t in_start, size_t in_end, topic_vector in_t_topics, size_t in_h
     :start(in_start), end(in_end), top_topics (in_t_topics), height(in_height), k_topics(in_k_topics), left(in_left), right(in_right), updated(updated)
 {}
 
-// Funciones
+// Methods
 bool node::isLeaf() { return !left && !right; }
 
 void node::update_height()
 {
-    size_t l_height = (left? left->height : 0 );
+    size_t l_height = (left ? left->height : 0 );
     size_t r_height = (right ? right->height : 0);
 
-    height = std::max(l_height, r_height) + 1;
+    height = my_max(l_height, r_height) + 1;
 }
 
 void node::merge()
 {
-    //std::cout << "Merge called\n";
+    // Check if l/r needs merge
     if (left && !left->is_updated())
         left->merge();
 
@@ -31,6 +31,7 @@ void node::merge()
 
     unordered_map <size_t, size_t, int_hash> helper;
 
+    // Combine nodes
     if (left)
     {
         for (auto& data : left->top_topics)
@@ -51,6 +52,7 @@ void node::merge()
 
     new_order.sort(topic_cmp);
 
+    // Resize if necessary
     if (new_order.size() > k_topics)
         new_order.resize(k_topics);
 
@@ -59,12 +61,6 @@ void node::merge()
     updated = true;
 }
 
-bool node::is_updated()
-{
-    return updated;
-}
+bool node::is_updated() { return updated; }
 
-bool topic_cmp(topic& a, topic& b)
-{
-    return a.frequency > b.frequency;
-}
+bool topic_cmp(topic& a, topic& b) { return a.frequency > b.frequency; }

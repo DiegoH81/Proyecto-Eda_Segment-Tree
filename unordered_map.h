@@ -5,15 +5,15 @@
 #include "pair.h"
 
 
-
 template <typename KEY, typename VALUE>
 struct node_u_map
 {
     pair<KEY, VALUE> data;
     node_u_map* next;
 
-    node_u_map(const KEY& k, const VALUE& v) :
-        data(k, v), next(nullptr)
+    // Constructor
+    node_u_map(KEY& in_key, VALUE& in_value) :
+        data(in_key, in_value), next(nullptr)
     {}
 };
 
@@ -24,14 +24,16 @@ class unordered_map_iterator
 public:
     using node_t = node_u_map<KEY, VALUE> ;
 
-    unordered_map_iterator(node_t** buckets, size_t bucket_count, size_t bucket_index, node_t* current)
-        : buckets(buckets), bucket_count(bucket_count), bucket_index(bucket_index), current(current)
+    // Constructor
+    unordered_map_iterator(node_t** in_buckets, size_t in_bucket_count, size_t in_bucket_index, node_t* in_current)
+        : buckets(in_buckets), bucket_count(in_bucket_count), bucket_index(in_bucket_index), current(in_current)
     {}
 
     unordered_map_iterator& operator++()
     {
         if (current)
             current = current->next;
+
         while (!current && bucket_index + 1 < bucket_count)
         {
             bucket_index++;
@@ -40,12 +42,12 @@ public:
         return *this;
     }
 
-    bool operator==(const unordered_map_iterator& other)
+    bool operator==(unordered_map_iterator& other)
     {
         return current == other.current;
     }
 
-    bool operator!=(const unordered_map_iterator& other)
+    bool operator!=(unordered_map_iterator& other)
     {
         return current != other.current;
     }
@@ -73,7 +75,8 @@ class unordered_map
 {
 public:
     using iterator = unordered_map_iterator<KEY, VALUE>;
-    // Constructores
+    
+    // Constructor
     unordered_map(size_t bucket_count = 16) :
         bucket_count(bucket_count), max_load_factor(0.75f), hash_func()
     {
@@ -87,15 +90,17 @@ public:
     {
         buckets = new node_u_map<KEY, VALUE>* [bucket_count]();
 
+        // Copy data
         for (size_t i = 0; i < bucket_count; ++i)
         {
-            node_u_map<KEY, VALUE>* curr = other.buckets[i];
+            node_u_map<KEY, VALUE>* cur_bucket = other.buckets[i];
             node_u_map<KEY, VALUE>** ptr_to_next = &buckets[i];
 
-            while (curr)
+            while (cur_bucket)
             {
-                *ptr_to_next = new node_u_map<KEY, VALUE>(curr->data.first, curr->data.second);
-                curr = curr->next;
+                *ptr_to_next = new node_u_map<KEY, VALUE>(cur_bucket->data.first, cur_bucket->data.second);
+
+                cur_bucket = cur_bucket->next;
                 ptr_to_next = &((*ptr_to_next)->next);
             }
         }
@@ -103,28 +108,30 @@ public:
 
     unordered_map& operator=(const unordered_map& other)
     {
-        if (this == &other)
-            return *this;
-
-        clear();
-
-        bucket_count = other.bucket_count;
-        _size = other._size;
-        max_load_factor = other.max_load_factor;
-        hash_func = other.hash_func;
-
-        buckets = new node_u_map<KEY, VALUE>* [bucket_count]();
-
-        for (size_t i = 0; i < bucket_count; ++i)
+        if (this != &other)
         {
-            node_u_map<KEY, VALUE>* curr = other.buckets[i];
-            node_u_map<KEY, VALUE>** ptr_to_next = &buckets[i];
+            clear();
 
-            while (curr)
+            bucket_count = other.bucket_count;
+            _size = other._size;
+            max_load_factor = other.max_load_factor;
+            hash_func = other.hash_func;
+
+            buckets = new node_u_map<KEY, VALUE>* [bucket_count]();
+
+            // Copy data
+            for (size_t i = 0; i < bucket_count; ++i)
             {
-                *ptr_to_next = new node_u_map<KEY, VALUE>(curr->data.first, curr->data.second);
-                curr = curr->next;
-                ptr_to_next = &((*ptr_to_next)->next);
+                node_u_map<KEY, VALUE>* cur_bucket = other.buckets[i];
+                node_u_map<KEY, VALUE>** ptr_to_next = &buckets[i];
+
+                while (cur_bucket)
+                {
+                    *ptr_to_next = new node_u_map<KEY, VALUE>(cur_bucket->data.first, cur_bucket->data.second);
+
+                    cur_bucket = cur_bucket->next;
+                    ptr_to_next = &((*ptr_to_next)->next);
+                }
             }
         }
 
@@ -137,42 +144,48 @@ public:
         delete[] buckets;
     }
 
-    // Funciones
-    void insert(const KEY& key, const VALUE& value)
+    // Methods
+    void insert(KEY& key, VALUE value)
     {
         if ((_size + 1) > bucket_count * max_load_factor)
             rehash(bucket_count * 2);
 
         size_t index = hash(key) % bucket_count;
-        node_u_map<KEY, VALUE>* n = buckets[index];
+        node_u_map<KEY, VALUE>* cur_node = buckets[index];
 
-        while (n)
+        // Find key
+        while (cur_node)
         {
-            if (n->data.first == key)
+            if (cur_node->data.first == key)
             {
-                n->data.second += value;
+                cur_node->data.second += value;
                 return;
             }
-            n = n->next;
+
+            cur_node = cur_node->next;
         }
 
-        // Insert at the start
-        n = new node_u_map<KEY, VALUE>(key, value);
-        n->next = buckets[index];
-        buckets[index] = n;
+        // Insert at the the start
+        cur_node = new node_u_map<KEY, VALUE>(key, value);
+        cur_node->next = buckets[index];
+        buckets[index] = cur_node;
+
         _size++;
     }
 
-    VALUE* find(const KEY& key)
+    VALUE* find(KEY& key)
     {
         size_t index = hash(key) % bucket_count;
-        node_u_map<KEY, VALUE>* n = buckets[index];
-        while (n)
+        node_u_map<KEY, VALUE>* cur_node = buckets[index];
+
+        while (cur_node)
         {
-            if (n->data.first == key)
-                return &n->data.second;
-            n = n->next;
+            if (cur_node->data.first == key) // If found
+                return &cur_node->data.second;
+
+            cur_node = cur_node->next;
         }
+
         return nullptr;
     }
 
@@ -180,23 +193,22 @@ public:
     {
         for (size_t i = 0; i < bucket_count; ++i)
         {
-            node_u_map<KEY, VALUE>* n = buckets[i];
-            while (n)
+            node_u_map<KEY, VALUE>* cur_node = buckets[i];
+
+            while (cur_node)
             {
-                node_u_map<KEY, VALUE>* temp = n;
-                n = n->next;
+                node_u_map<KEY, VALUE>* temp = cur_node;
+
+                cur_node = cur_node->next;
                 delete temp;
             }
+
             buckets[i] = nullptr;
         }
         _size = 0;
     }
 
-    size_t size()
-    {
-        return _size;
-    
-    }
+    size_t size() { return _size; }
 
     iterator begin()
     {
@@ -217,10 +229,10 @@ private:
     node_u_map<KEY, VALUE>** buckets;
     size_t bucket_count, _size;
     FUNC hash_func;
-
     float max_load_factor;
 
-    size_t hash(const KEY& key)
+    // Methods
+    size_t hash(KEY& key)
     {
         return hash_func(key);
     }
@@ -231,14 +243,17 @@ private:
 
         for (size_t i = 0; i < bucket_count; ++i)
         {
-            node_u_map<KEY, VALUE>* current = buckets[i];
-            while (current)
+            node_u_map<KEY, VALUE>* cur_node = buckets[i];
+
+            // Re-assign nodes
+            while (cur_node)
             {
-                node_u_map<KEY, VALUE>* next = current->next;
-                size_t new_index = hash(current->data.first) % new_bucket_count;
-                current->next = new_buckets[new_index];
-                new_buckets[new_index] = current;
-                current = next;
+                node_u_map<KEY, VALUE>* next = cur_node->next;
+
+                size_t new_index = hash(cur_node->data.first) % new_bucket_count;
+                cur_node->next = new_buckets[new_index];
+                new_buckets[new_index] = cur_node;
+                cur_node = next;
             }
         }
 

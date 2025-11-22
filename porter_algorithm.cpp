@@ -11,7 +11,7 @@ porter_algorithm::porter_algorithm()
 
 
 
-// Funciones
+// Methods
 
 void porter_algorithm::porter_stem(std::string& in_word)
 {
@@ -71,7 +71,6 @@ bool porter_algorithm::is_vowel(std::string& str, size_t index)
 
 	return false;
 }
-
 
 bool porter_algorithm::ends_with(std::string& word, const std::string& suffix)
 {
@@ -150,7 +149,7 @@ void porter_algorithm::step_1_b(std::string& in_word)
 		modified = true;
 	}
 
-	//Rules OPT
+	// Rules OPT
 	if (modified)
 	{
 
@@ -202,7 +201,6 @@ void porter_algorithm::step_3(std::string& in_word)
 {
 	for (auto& rule : rules_3)
 	{
-
 		if (ends_with(in_word, rule.s1))
 		{
 			size_t prefix_len = in_word.length() - rule.s1.length();
@@ -269,7 +267,7 @@ void porter_algorithm::step_5_b(std::string& in_word)
 		in_word.pop_back();
 }
 
-// Condiciones
+// Conditionals
 bool porter_algorithm::_s(std::string& in_word) // Ends with s
 {
 	if (in_word.size() >= 1)
@@ -321,7 +319,7 @@ bool porter_algorithm::_o(std::string& in_word, size_t length) // Ends with cvc,
 	return false;
 }
 
-// Inicializadores
+// Init
 void porter_algorithm::init_rules_1_a()
 {
 	rules_1_a.reserve(4);

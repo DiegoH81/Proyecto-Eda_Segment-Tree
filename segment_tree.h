@@ -8,9 +8,8 @@
 #include "funciones.h"
 #include "pair.h"
 
-
 #include <string>
-//#include <iostream>
+#include <iostream>
 
 class segment_tree
 {
@@ -21,8 +20,7 @@ public:
 
     segment_tree& operator=(const segment_tree& other);
 
-
-    // Metodos
+    // Methods
     vector<pair<std::string, size_t>> query(size_t start, size_t end, size_t in_k);
     void print();
     void print_root();
@@ -31,22 +29,23 @@ public:
     bool is_empty();
 
     size_t get_time();
+    size_t get_size();
 private:
     node* root;
     size_t k_topics, size, time, update_time;
     unordered_map <std::string, size_t, string_hash> word_to_id;
     vector <std::string> id_to_word;
 
-    // Metodos
+    // Methods
     void process_topic(std::string& in_topic);
     void grow_node(node** in_ptr);
     void adjust_tree(vector <node*>& path);
     void print_recursive(node* in_ptr, int space);
     void recursive_query(node* in_ptr, size_t start, size_t end, unordered_map<size_t, size_t, int_hash>& answer);
-    
     void recursive_destructor(node **in_ptr);
+    node* deep_copy_tree(node* in_ptr);
+
     node** find_pos(vector<node*>& path);
 
 };
-
 #endif

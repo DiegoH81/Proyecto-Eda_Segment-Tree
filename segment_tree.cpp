@@ -1,11 +1,10 @@
 #include "segment_tree.h"
 
-// Constructores
+// Constructor
 segment_tree::segment_tree(size_t in_k_topics, size_t in_update)
 	: root(nullptr), k_topics(in_k_topics * 1.5), size(0),
 	  time(0), word_to_id(), id_to_word(), update_time(in_update)
 {}
-
 
 segment_tree::~segment_tree()
 {
@@ -22,12 +21,11 @@ segment_tree& segment_tree::operator=(const segment_tree& other)
 	if (this == &other)
 		return *this;
 
-	
 	if (root)
 		recursive_destructor(&root);
+
 	root = nullptr;
 
-	
 	k_topics = other.k_topics;
 	size = other.size;
 	time = other.time;
@@ -42,16 +40,11 @@ segment_tree& segment_tree::operator=(const segment_tree& other)
 	return *this;
 }
 
-// Funciones
+// Methods
 void segment_tree::insert(vector<pair<std::string, size_t>>& topics)
 {
-	
-	if (time % update_time == 0 && root)
-	{
-		//std::cout << time << " - " << update_time << "\n";
-		//std::cout << "MERGE GLOBAL\n";
+	if (time % update_time == 0 && root) // Global merge
 		root->merge();
-	}
 
 	time++;
 	size++;
@@ -67,7 +60,6 @@ void segment_tree::insert(vector<pair<std::string, size_t>>& topics)
 
 		topics_data.push_back({ *value , topic.second });
 	}
-
 
 	vector<node*> path;
 	node** pos = find_pos(path);
@@ -141,6 +133,7 @@ void segment_tree::print()
 
 vector<pair<std::string, size_t>> segment_tree::query(size_t start, size_t end, size_t in_k)
 {
+	// Limit validations
 	if (start < 1)
 		start = 1;
 	if (end < 1)
@@ -198,8 +191,6 @@ void segment_tree::recursive_query(node* in_ptr, size_t range_start, size_t rang
 			return;
 		}
 		*/
-
-		//std::cout << "MERGE EN QUERY\n";
 
 		if (!in_ptr->updated)
 			in_ptr->merge();
@@ -278,6 +269,7 @@ void segment_tree::print_root()
 
 size_t segment_tree::get_time() { return time; }
 
+size_t segment_tree::get_size() { return size; }
 
 void segment_tree::recursive_destructor(node** in_ptr)
 {
@@ -289,6 +281,27 @@ void segment_tree::recursive_destructor(node** in_ptr)
 
 	delete* in_ptr;
 	*in_ptr = nullptr;
+}
+
+node* segment_tree::deep_copy_tree(node* in_ptr)
+{
+	if (!in_ptr)
+		return nullptr;
+
+	node* new_node = new node(
+		in_ptr->start,
+		in_ptr->end,
+		in_ptr->top_topics,
+		in_ptr->height,
+		k_topics,
+		nullptr, nullptr,
+		in_ptr->updated
+	);
+
+	new_node->left = deep_copy_tree(in_ptr->left);
+	new_node->right = deep_copy_tree(in_ptr->right);
+
+	return new_node;
 }
 
 bool segment_tree::is_empty()

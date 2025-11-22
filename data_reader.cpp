@@ -6,14 +6,13 @@ data_reader::data_reader(std::string s_w_path): porter(), n_files(0)
 	load_stop_words(s_w_path);
 }
 
-// Funciones
+// Methods
 void data_reader::load_stop_words(std::string file_path)
 {
 	std::ifstream file(file_path);
 
 	if (!file.is_open())
 		throw std::runtime_error("No se pudo abrir el archivo de stopwords: " + file_path);
-
 
 	std::string buffer;
 	while (std::getline(file, buffer))
@@ -31,33 +30,14 @@ void data_reader::load_files(std::string folder_path)
 		files.push(entry.path().string());
 		temp.push_back(entry.path().string());
 	}
-	
-	
-	/*
-	int counter = 0;
-	int limit = 100000;
-	while (counter < limit)
-	{
-		for (int i = 0; i < temp.size() && counter < limit; i++)
-		{
-			files.push(temp[i]);
-			counter++;
-		}
-	}
-	
-	*/
-	
-	
 
 	n_files = files.size();
-	//std::cout << "s: " << files.size() << "\n";
 }
 
 std::vector<std::pair<std::string, size_t>> data_reader::get_current_trending_topic(size_t& limit)
 {
 	std::unordered_map <std::string, size_t> helper;
 	std::vector<std::pair<std::string, size_t>> trending_topics;
-
 
 	if (!is_empty())
 	{
@@ -70,7 +50,6 @@ std::vector<std::pair<std::string, size_t>> data_reader::get_current_trending_to
 
 		if (!file.is_open())
 			throw std::runtime_error("No se pudo abrir el archivo: " + file_path);
-
 
 		std::string buffer;
 
@@ -123,16 +102,13 @@ std::vector<std::pair<std::string, size_t>> data_reader::get_current_trending_to
 	return trending_topics;
 }
 
-
-
-
 bool data_reader::is_empty() { return files.empty(); }
 
 size_t data_reader::size() { return n_files; }
 
-void data_reader::process_word(std::string& s)
+void data_reader::process_word(std::string& in_string)
 {
-	for (char& c : s)
+	for (char& c : in_string)
 	{
 		unsigned char x = c;
 

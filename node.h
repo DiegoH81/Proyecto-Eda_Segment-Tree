@@ -5,7 +5,6 @@
 #include "topic.h"
 #include "unordered_map.h"
 #include "funciones.h"
-#include <iostream>
 
 using topic_vector = vector<topic>;
 bool topic_cmp(topic &a, topic& b);
@@ -17,11 +16,12 @@ public:
     topic_vector top_topics;
     size_t height, k_topics, start, end;
     bool updated;
-    // Constructores
+
+    // Constructor
     node();
     node(size_t in_start, size_t in_end, topic_vector in_t_topics, size_t in_height, size_t in_k_topics, node* in_left = nullptr, node* in_right = nullptr, bool updated = false);
 
-    // Metodos
+    // Methods
     bool isLeaf();
     void merge();
     void update_height();

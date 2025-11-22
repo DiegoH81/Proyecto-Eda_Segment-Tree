@@ -24,7 +24,7 @@ private:
                              rules_3,
                              rules_4;
 
-    // Funciones
+    // Methods
     void step_1_a(std::string& in_word);
     void step_1_b(std::string& in_word);
     void step_1_c(std::string& in_word);
@@ -42,18 +42,17 @@ private:
     bool ends_with(std::string& word, const std::string& suffix);
 
     
-    // Condiciones
+    // Conditionals
     bool _s(std::string& in_word); // Ends with s
     bool _v_(std::string& in_word, size_t length); // Has a vowel
     bool _d(std::string& in_word); // Ends with double consonant
     bool _o(std::string& in_word, size_t length); // Ends with cvc, where the second c is not W, X or Y
 
-    // Inicializadores
+    // Init
     void init_rules_1_a();
     void init_rules_2();
     void init_rules_3();
     void init_rules_4();
-    
 };
 
 #endif
