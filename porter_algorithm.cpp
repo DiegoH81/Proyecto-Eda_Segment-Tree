@@ -9,8 +9,6 @@ porter_algorithm::porter_algorithm()
 	init_rules_4();
 }
 
-
-
 // Methods
 
 void porter_algorithm::porter_stem(std::string& in_word)

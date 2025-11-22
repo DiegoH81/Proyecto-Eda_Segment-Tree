@@ -39,28 +39,17 @@ public:
             bucket_index++;
             current = buckets[bucket_index];
         }
+
         return *this;
     }
 
-    bool operator==(unordered_map_iterator& other)
-    {
-        return current == other.current;
-    }
+    bool operator==(unordered_map_iterator& other) { return current == other.current; }
 
-    bool operator!=(unordered_map_iterator& other)
-    {
-        return current != other.current;
-    }
+    bool operator!=(unordered_map_iterator& other) { return current != other.current; }
 
-    pair<KEY, VALUE>& operator*()
-    {
-        return current->data;
-    }
+    pair<KEY, VALUE>& operator*() { return current->data; }
 
-    pair<KEY, VALUE>* operator->()
-    {
-        return &(current->data);
-    }
+    pair<KEY, VALUE>* operator->() { return &(current->data); }
 
 private:
     node_t** buckets;
@@ -78,30 +67,21 @@ public:
     
     // Constructor
     unordered_map(size_t bucket_count = 16) :
-        bucket_count(bucket_count), max_load_factor(0.75f), hash_func()
-    {
-        buckets = new node_u_map<KEY, VALUE>* [bucket_count]();
-        _size = 0;
-    }
+        bucket_count(bucket_count), max_load_factor(0.75f), hash_func(), buckets(nullptr), _size(0)
+    { }
 
     unordered_map(unordered_map& other)
-        : bucket_count(other.bucket_count), _size(other._size),
+        : bucket_count(other.bucket_count), _size(0),
           max_load_factor(other.max_load_factor), hash_func(other.hash_func)
     {
-        buckets = new node_u_map<KEY, VALUE>* [bucket_count]();
-
-        // Copy data
-        for (size_t i = 0; i < bucket_count; ++i)
+        for (size_t i = 0; i < bucket_count && other.buckets; i++)
         {
-            node_u_map<KEY, VALUE>* cur_bucket = other.buckets[i];
-            node_u_map<KEY, VALUE>** ptr_to_next = &buckets[i];
-
-            while (cur_bucket)
+            node_u_map<KEY, VALUE>* cur_node = other.buckets[i];
+            while (cur_node)
             {
-                *ptr_to_next = new node_u_map<KEY, VALUE>(cur_bucket->data.first, cur_bucket->data.second);
+                insert(cur_node->data.first, cur_node->data.second);
 
-                cur_bucket = cur_bucket->next;
-                ptr_to_next = &((*ptr_to_next)->next);
+                cur_node = cur_node->next;
             }
         }
     }
@@ -113,24 +93,18 @@ public:
             clear();
 
             bucket_count = other.bucket_count;
-            _size = other._size;
+            _size = 0;
             max_load_factor = other.max_load_factor;
             hash_func = other.hash_func;
 
-            buckets = new node_u_map<KEY, VALUE>* [bucket_count]();
-
-            // Copy data
-            for (size_t i = 0; i < bucket_count; ++i)
+            for (size_t i = 0; i < bucket_count && other.buckets; i++)
             {
-                node_u_map<KEY, VALUE>* cur_bucket = other.buckets[i];
-                node_u_map<KEY, VALUE>** ptr_to_next = &buckets[i];
-
-                while (cur_bucket)
+                node_u_map<KEY, VALUE>* cur_node = other.buckets[i];
+                while (cur_node)
                 {
-                    *ptr_to_next = new node_u_map<KEY, VALUE>(cur_bucket->data.first, cur_bucket->data.second);
+                    insert(cur_node->data.first, cur_node->data.second);
 
-                    cur_bucket = cur_bucket->next;
-                    ptr_to_next = &((*ptr_to_next)->next);
+                    cur_node = cur_node->next;
                 }
             }
         }
@@ -147,34 +121,44 @@ public:
     // Methods
     void insert(KEY& key, VALUE value)
     {
-        if ((_size + 1) > bucket_count * max_load_factor)
-            rehash(bucket_count * 2);
+        if (!_size) // If hash is empty
+            buckets = new node_u_map<KEY, VALUE>* [bucket_count]();
 
         size_t index = hash(key) % bucket_count;
         node_u_map<KEY, VALUE>* cur_node = buckets[index];
 
         // Find key
+        bool found = false;
         while (cur_node)
         {
             if (cur_node->data.first == key)
             {
-                cur_node->data.second += value;
-                return;
+                found = true;
+                break;
             }
 
             cur_node = cur_node->next;
         }
 
-        // Insert at the the start
-        cur_node = new node_u_map<KEY, VALUE>(key, value);
-        cur_node->next = buckets[index];
-        buckets[index] = cur_node;
+        if (found)
+            cur_node->data.second += value;
+        else // Insert at the the start
+        {
+            cur_node = new node_u_map<KEY, VALUE>(key, value);
+            cur_node->next = buckets[index];
+            buckets[index] = cur_node;
+        }
 
         _size++;
+        if (_size > bucket_count * max_load_factor) // Max load factor surpassed
+            rehash(bucket_count * 2);
     }
 
     VALUE* find(KEY& key)
     {
+        if (!_size)
+            return nullptr;
+
         size_t index = hash(key) % bucket_count;
         node_u_map<KEY, VALUE>* cur_node = buckets[index];
 
@@ -191,15 +175,15 @@ public:
 
     void clear()
     {
-        for (size_t i = 0; i < bucket_count; ++i)
+        for (size_t i = 0; i < bucket_count && buckets; ++i)
         {
             node_u_map<KEY, VALUE>* cur_node = buckets[i];
 
             while (cur_node)
             {
                 node_u_map<KEY, VALUE>* temp = cur_node;
-
                 cur_node = cur_node->next;
+
                 delete temp;
             }
 
@@ -248,12 +232,12 @@ private:
             // Re-assign nodes
             while (cur_node)
             {
-                node_u_map<KEY, VALUE>* next = cur_node->next;
+                node_u_map<KEY, VALUE>* temp = cur_node;
+                cur_node = cur_node->next;
 
-                size_t new_index = hash(cur_node->data.first) % new_bucket_count;
-                cur_node->next = new_buckets[new_index];
-                new_buckets[new_index] = cur_node;
-                cur_node = next;
+                size_t new_bucket_pos = hash(temp->data.first) % new_bucket_count;
+                temp->next = new_buckets[new_bucket_pos];
+                new_buckets[new_bucket_pos] = temp;
             }
         }
 

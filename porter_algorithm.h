@@ -34,13 +34,11 @@ private:
     void step_5_a(std::string& in_word);
     void step_5_b(std::string& in_word);
 
-
     bool is_vowel(std::string& str, size_t index);
     bool prefix_has_vowel(std::string& word, size_t prefix_len);
-
-    size_t get_measure_limits(std::string& word, size_t length);
     bool ends_with(std::string& word, const std::string& suffix);
 
+    size_t get_measure_limits(std::string& word, size_t length);
     
     // Conditionals
     bool _s(std::string& in_word); // Ends with s

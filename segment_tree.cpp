@@ -126,10 +126,7 @@ void segment_tree::grow_node(node** in_ptr)
 	*in_ptr = new node(old_ptr->start, time, {}, old_ptr->height + 1, k_topics, old_ptr);
 }
 
-void segment_tree::print()
-{
-	print_recursive(root, 0);
-}
+void segment_tree::print() { print_recursive(root, 0); }
 
 vector<pair<std::string, size_t>> segment_tree::query(size_t start, size_t end, size_t in_k)
 {
@@ -139,7 +136,7 @@ vector<pair<std::string, size_t>> segment_tree::query(size_t start, size_t end, 
 	if (end < 1)
 		end = 1;
 	if (start > end)
-		std::swap(start, end);
+		my_swap(start, end);
 	if (end > time)
 		end = time;
 	if (start > time)
@@ -181,17 +178,6 @@ void segment_tree::recursive_query(node* in_ptr, size_t range_start, size_t rang
 
 	if (ptr_start == range_start && ptr_end == range_end)
 	{
-		/*
-		if (in_ptr->top_topics.size() < k_topics)
-		{
-			if (in_ptr->left)
-				recursive_query(in_ptr->left, range_start, in_ptr->left->end, answer);
-			if (in_ptr->right)
-				recursive_query(in_ptr->right, in_ptr->right->start, range_end, answer);
-			return;
-		}
-		*/
-
 		if (!in_ptr->updated)
 			in_ptr->merge();
 
@@ -279,7 +265,7 @@ void segment_tree::recursive_destructor(node** in_ptr)
 	recursive_destructor(&((*in_ptr)->left));
 	recursive_destructor(&((*in_ptr)->right));
 
-	delete* in_ptr;
+	delete *in_ptr;
 	*in_ptr = nullptr;
 }
 
@@ -288,15 +274,13 @@ node* segment_tree::deep_copy_tree(node* in_ptr)
 	if (!in_ptr)
 		return nullptr;
 
-	node* new_node = new node(
-		in_ptr->start,
-		in_ptr->end,
-		in_ptr->top_topics,
-		in_ptr->height,
-		k_topics,
-		nullptr, nullptr,
-		in_ptr->updated
-	);
+	node* new_node = new node( in_ptr->start,
+							   in_ptr->end,
+							   in_ptr->top_topics,
+							   in_ptr->height,
+							   k_topics,
+							   nullptr, nullptr,
+							   in_ptr->updated );
 
 	new_node->left = deep_copy_tree(in_ptr->left);
 	new_node->right = deep_copy_tree(in_ptr->right);
@@ -304,7 +288,4 @@ node* segment_tree::deep_copy_tree(node* in_ptr)
 	return new_node;
 }
 
-bool segment_tree::is_empty()
-{
-	return root == nullptr;
-}
+bool segment_tree::is_empty() { return root == nullptr; }

@@ -2,7 +2,7 @@
 #define VECTOR_H
 #include "funciones.h"
 
-template <class T>
+template <typename T>
 class vector_iterator
 {
 public:
@@ -14,13 +14,6 @@ public:
 	{
 		++ptr;
 		return *this;
-	}
-
-	vector_iterator operator++(int)
-	{
-		vector_iterator<T> temp = *this;
-		++ptr;
-		return temp;
 	}
 
 	bool operator==(vector_iterator& other)
@@ -47,7 +40,7 @@ private:
 };
 
 
-template <class T>
+template <typename T>
 class vector
 {
 public:
@@ -157,7 +150,7 @@ public:
 
 	bool empty() { return _size == 0; }
 
-	template <class OP>
+	template <typename OP>
 	void sort(OP op)
 	{
 		if (_size <= 1)
@@ -184,8 +177,7 @@ public:
 	size_t size() { return _size; }
 private:
 	T* data;
-	size_t _size;
-	size_t capacity;
+	size_t _size, capacity;
 };
 
 #endif

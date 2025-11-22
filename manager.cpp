@@ -2,17 +2,18 @@
 
 // Constructor
 manager::manager(size_t k_topics, std::string stop_words_path, std::string path_script, std::string path_txt):
-	tree(k_topics), k_topics(k_topics), reader(stop_words_path), path_script(path_script), path_txt(path_txt)
+	tree(k_topics), k_topics(k_topics), reader(stop_words_path), path_script(path_script), path_txt(path_txt), size(0)
 { }
 
 manager::manager(std::string stop_words_path, std::string path_script, std::string path_txt) :
-	tree(), k_topics(0), reader(stop_words_path), path_script(path_script), path_txt(path_txt)
+	tree(), k_topics(0), reader(stop_words_path), path_script(path_script), path_txt(path_txt), size(0)
 {}
 
 // Methods
 void manager::load_files(std::string folder_path)
 {
 	reader.load_files(folder_path);
+	size = reader.size();
 }
 
 void manager::insert(double &process_time, double &insert_time)
@@ -73,11 +74,6 @@ void manager::open_python(std::string seconds)
 	std::string command = "python \"" + path_script + "\" \"" + path_txt + "\" " + seconds;
 
 	system(command.c_str());
-}
-
-size_t manager::size()
-{
-	return reader.size();
 }
 
 // Menu
@@ -148,8 +144,6 @@ void manager::manual_mode(std::string time)
 	
 	double process_time = 0, insert_time = 0;
 	insert(process_time, insert_time);
-
-
 
 	size_t end_mark = 0, start_mark = 0;
 
@@ -227,7 +221,7 @@ void manager::batch_mode(std::string time)
 	std::cout << "Ingrese K (numero de topicos): ";
 	std::cin >> K;
 
-	size_t limit = size() / 10;
+	size_t limit = size / 10;
 	size_t step = limit / 10;
 
 	double query_time = 0;
@@ -244,7 +238,7 @@ void manager::batch_mode(std::string time)
 	size_t counter = 0;
 
 	// Process batch
-	for (size_t i = 0; i < limit && !reader.is_empty(); ++i)
+	for (size_t i = 0; i < limit && !reader.is_empty(); i++)
 	{
 		insert(process_time, insert_time);
 
@@ -293,15 +287,9 @@ void manager::complete_mode(std::string time)
 	}
 
 	double total_insert_time = 0;
-	
-	int temp_size = size();
-	int perc = temp_size / 1000;
-
-
-	size_t limit = size();
+	size_t limit = reader.size();
 
 	int counter = 0;
-	int perc_counter = 0;
 
 	double query_time = 0;
 	double process_time = 0;
@@ -364,7 +352,6 @@ void manager::complete_mode(std::string time)
 
 	query_time = std::chrono::duration_cast<std::chrono::nanoseconds>(end_query - start_query).count();
 
-
 	// Print total
 	print_totals(insert_time, process_time, 0, limit, limit, 0);	
 	print_query(1 , query_time);
@@ -380,13 +367,38 @@ void manager::query_mode(std::string time)
 		std::cout << "El arbol esta vacio, no se pueden hacer queries.\n";
 		return;
 	}
-	size_t K;
-	size_t start_mark, end_mark;
+	int subop;
+	std::cout << "1. Mostrar ultimos N topicos\n";
+	std::cout << "2. Mostrar rango personalizado\n";
+	std::cout << "Opcion: ";
+	std::cin >> subop;
 
-	std::cout << "Inicio del rango: ";
-	std::cin >> start_mark;
-	std::cout << "Fin del rango: ";
-	std::cin >> end_mark;
+
+	size_t end_mark = 0, start_mark = 0;
+
+
+	if (subop == 1)
+	{
+		size_t N;
+		std::cout << "Ultimas N inserciones: ";
+		std::cin >> N;
+		end_mark = get_time();
+
+		if (int(end_mark) - int(N) < 0)
+			start_mark = 0;
+		else
+			start_mark = end_mark - N;
+	}
+	else if (subop == 2)
+	{
+		std::cout << "Inicio del rango: ";
+		std::cin >> start_mark;
+		std::cout << "Fin del rango: ";
+		std::cin >> end_mark;
+
+	}
+
+	size_t K;
 	std::cout << "Ingrese K (numero de topicos): ";
 	std::cin >> K;
 
@@ -410,7 +422,7 @@ void manager::manual_mode_query(std::string time)
 		return;
 	}
 
-	size_t limit = size();
+	size_t limit = reader.size();
 	size_t step = limit / 10;
 
 	double query_time = 0;
@@ -431,7 +443,7 @@ void manager::manual_mode_query(std::string time)
 	int subop;
 	size_t N;
 
-	for (size_t i = 0; i < limit && !reader.is_empty(); ++i)
+	for (size_t i = 0; i < size && !reader.is_empty(); i++)
 	{
 		insert(process_time, insert_time);
 
