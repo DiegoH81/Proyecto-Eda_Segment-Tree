@@ -27,16 +27,16 @@ Se busca implementar un Segment Tree optimizado para almacenar y consultar trend
 | `manager` | Integración de data_reader, segment_tree y el graficador en Python |
 
 ### Diagrama de clases
-![Diagrama de clases](img/class_diagram.jpg)
+![Diagrama de clases](img/class_diagram.png)
 
 ### Flujo de los datos
 Flujo del árbol al momento de hacer una inserción:
 
 **Árbol antes de insertar:**
-![Árbol antes de insertar](img/e_1.jpg)
+![Árbol antes de insertar](img/e_1.png)
 
 **Árbol después de insertar:**
-![Árbol después de insertar](img/e_2.jpg)
+![Árbol después de insertar](img/e_2.png)
 
 ## Menú
 
