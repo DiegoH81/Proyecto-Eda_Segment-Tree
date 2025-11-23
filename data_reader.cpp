@@ -118,7 +118,7 @@ void data_reader::process_word(std::string& in_string)
 			continue;
 		}
 
-		if ((x < 'a' || x > 'z') && (x < '0' || x > '9'))
+		if (x < 'a' || x > 'z')
 			c = ' ';
 	}
 }

@@ -38,7 +38,7 @@ void quick_sort(T* begin, T* end, Compare comp)
 class string_hash
 {
 public:
-	size_t operator()(const std::string& str)
+	size_t operator()(std::string& str)
 	{
 		size_t h = 0;
 		for (char c : str)
