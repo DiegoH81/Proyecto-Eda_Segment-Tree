@@ -17,7 +17,7 @@ int main()
 
 	managersin.load_files(files_path);
 	managersin.show_cover();
-	managersin.configure(1024, 4);
+	managersin.configure(1024, 2.5);
 	managersin.menu(time_manual, time_batch, time_complete, time_manual_query, time_query);
 
 	return 0;

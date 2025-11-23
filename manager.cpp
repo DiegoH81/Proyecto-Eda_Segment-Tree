@@ -322,7 +322,7 @@ void manager::complete_mode(std::string time)
 	}
 
 	int subop;
-	std::cout << "1. Mostrar ultimos N topicos\n";
+	std::cout << "1. Mostrar ultimos N inserciones\n";
 	std::cout << "2. Mostrar rango personalizado\n";
 	std::cout << "Opcion: ";
 	std::cin >> subop;
@@ -378,7 +378,7 @@ void manager::query_mode(std::string time)
 		return;
 	}
 	int subop;
-	std::cout << "1. Mostrar ultimos N topicos\n";
+	std::cout << "1. Mostrar ultimos N inserciones\n";
 	std::cout << "2. Mostrar rango personalizado\n";
 	std::cout << "Opcion: ";
 	std::cin >> subop;
@@ -526,7 +526,7 @@ void manager::print_query(const size_t& counter, double& query_time)
 {
 	std::cout << "\n============== QUERY INFO ==============\n";
 	std::cout << "Query " << counter << " : " << query_time << " ns \n";
-	std::cout << "========================================\n";
+	std::cout << "========================================\n\n";
 }
 
 void manager::print_totals(const double& insert_time, const double& process_time, const double& query,
