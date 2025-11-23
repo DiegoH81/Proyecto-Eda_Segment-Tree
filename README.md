@@ -66,6 +66,9 @@ El menú presenta las siguientes opciones:
 
 ## Dependencias
 
+### Aclaraciones
+GCC esta en la versión **15.2.0** y PYTHON esta en la versión **3.13.1**
+
 ### C++
 No requiere librerías adicionales aparte de STL, necesita por lo menos **C++17**.
 
