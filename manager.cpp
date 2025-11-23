@@ -252,7 +252,7 @@ void manager::batch_mode(std::string time)
 	{
 		insert(process_time, insert_time);
 
-		total_process = process_time;
+		total_process += process_time;
 		total_insert += insert_time;
 
 
@@ -363,7 +363,7 @@ void manager::complete_mode(std::string time)
 	query_time = std::chrono::duration_cast<std::chrono::nanoseconds>(end_query - start_query).count();
 
 	// Print total
-	print_totals(insert_time, process_time, 0, limit, limit, 0);	
+	print_totals(total_insert, total_process, 0, limit, limit, 0);
 	print_query(1 , query_time);
 
 	export_query(q);
@@ -457,7 +457,7 @@ void manager::manual_mode_query(std::string time)
 	{
 		insert(process_time, insert_time);
 
-		total_process = process_time;
+		total_process += process_time;
 		total_insert += insert_time;
 
 
