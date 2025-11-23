@@ -1,8 +1,8 @@
 #include "segment_tree.h"
 
 // Constructor
-segment_tree::segment_tree(size_t in_k_topics, size_t in_update)
-	: root(nullptr), k_topics(in_k_topics * 1.5), size(0),
+segment_tree::segment_tree(size_t in_k_topics, float factor, size_t in_update)
+	: root(nullptr), k_topics(in_k_topics * factor), size(0),
 	  time(0), word_to_id(), id_to_word(), update_time(in_update)
 {}
 

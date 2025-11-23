@@ -77,13 +77,13 @@ void manager::open_python(std::string seconds)
 }
 
 // Menu
-void manager::configure(const size_t& in_update)
+void manager::configure(const size_t& in_update, const float& factor)
 {
 	std::cout << "\n=== CONFIGURACION INICIAL ===\n";
 	std::cout << "Numero de topicos (K): ";
 	std::cin >> k_topics;
 
-	tree = segment_tree(k_topics, in_update);
+	tree = segment_tree(k_topics, factor, in_update);
 }
 
 void manager::menu(std::string time_manual, std::string time_batch, std::string time_complete, std::string time_manual_query, std::string time_q)
@@ -126,6 +126,16 @@ void manager::menu(std::string time_manual, std::string time_batch, std::string 
 		}
 
 	}
+}
+
+void manager::show_cover()
+{
+	std::cout << "====================================================\n";
+	std::cout << "                    SEGMENT_TREE                    \n";
+	std::cout << "====================================================\n";
+	std::cout << "Elaborado por: Diego Hidalgo\n";
+	std::cout << "Curso: Estructuras de datos avanzada\n";
+	std::cout << "Profesor: Erick Gomez Nieto\n\n";
 }
 
 void manager::manual_mode(std::string time)

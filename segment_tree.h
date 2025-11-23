@@ -15,7 +15,7 @@ class segment_tree
 {
 public:
     // Constructor
-    segment_tree(size_t in_k_topics = 0, size_t in_update = 8192);
+    segment_tree(size_t in_k_topics = 0, float factor = 2.5f, size_t in_update = 8192);
     ~segment_tree();
 
     segment_tree& operator=(const segment_tree& other);

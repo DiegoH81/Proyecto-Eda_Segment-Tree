@@ -30,7 +30,8 @@ public:
 
 	// Menu
 	void menu(std::string time_manual, std::string time_batch, std::string time_complete, std::string time_manual_query, std::string time_q);
-	void configure(const size_t& in_update = 8192);
+	void configure(const size_t& in_update = 8192, const float& factor = 4);
+	void show_cover();
 private:
 	data_reader reader;
 	segment_tree tree;
